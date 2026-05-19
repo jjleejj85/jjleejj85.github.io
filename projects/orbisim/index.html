@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OrbiSim</title>
+    <meta
+      name="description"
+      content="OrbiSim: World Models as Differentiable Physics Engines for Embodied Intelligence."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top">OrbiSim</a>
+        <nav class="section-nav" aria-label="Section navigation">
+          <a href="#abstract">Abstract</a>
+          <a href="#overview">Overview</a>
+          <a href="#strengths">Strengths</a>
+          <a href="#experiments">Experiments</a>
+          <a href="#citation">Citation</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-inner">
+          <p class="eyebrow">Project Page</p>
+          <h1>
+            OrbiSim: World Models as Differentiable Physics Engines for
+            Embodied Intelligence
+          </h1>
+          <p class="hero-copy">
+            OrbiSim redefines world models as a differentiable physics engine
+            that unifies structured scene assets, neural dynamics, visual
+            prediction, and downstream control.
+          </p>
+
+          <div class="author-block">
+            <div class="authors" aria-label="Authors">
+              <span class="author">
+                <a
+                  href="https://jjleejj85.github.io"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Jiajian Li</a
+                ><sup>*</sup>
+              </span>
+              <span class="author">Jingyuan Huang<sup>*</sup></span>
+              <span class="author">Junru Gong<sup>*</sup></span>
+              <span class="author">
+                <a
+                  href="https://qiwang067.github.io/"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Qi Wang</a>
+              </span>
+              <span class="author">
+                <a
+                  href="https://scholar.google.com/citations?user=yDEavdMAAAAJ&hl=zh-CN"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Xiaokang Yang</a>
+              </span>
+              <span class="author">
+                <a
+                  href="https://wyb15.github.io/"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Yunbo Wang</a
+                ><sup>&#8224;</sup>
+              </span>
+            </div>
+
+            <div class="affiliation-list" aria-label="Affiliations">
+              <p>
+                MoE Key Lab of Artificial Intelligence, AI Institute, School
+                of Computer Science<br />
+                Shanghai Jiao Tong University
+              </p>
+            </div>
+
+            <div class="author-notes" aria-label="Author notes">
+              <p><sup>*</sup> Equal contribution.</p>
+              <p><sup>&#8224;</sup> Corresponding author.</p>
+            </div>
+          </div>
+
+          <div class="hero-actions" aria-label="Project links">
+            <a
+              class="project-button"
+              href="https://arxiv.org/pdf/2605.16395"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+                class="button-icon"
+              >
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.8"
+                />
+                <path
+                  d="M14 2v6h6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.8"
+                />
+                <path
+                  d="M8 13h8"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.8"
+                />
+                <path
+                  d="M8 17h5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.8"
+                />
+              </svg>
+              <span>arXiv</span>
+            </a>
+
+            <button class="project-button" type="button" disabled>
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+                class="button-icon"
+              >
+                <path
+                  d="M15 22v-4a4 4 0 0 0-1.2-2.8c3.9-.4 8-1.9 8-8.7A6.8 6.8 0 0 0 20 2.1 6.4 6.4 0 0 0 19.9 1S18.3.5 15 2.7a13.4 13.4 0 0 0-6 0C5.7.5 4.1 1 4.1 1A6.4 6.4 0 0 0 4 2.1 6.8 6.8 0 0 0 2.2 6.5c0 6.7 4.1 8.2 8 8.7A4 4 0 0 0 9 18v4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.8"
+                />
+                <path
+                  d="M9 18c-4 1.8-4-1.8-6-2"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.8"
+                />
+              </svg>
+              <span>Code</span>
+            </button>
+          </div>
+          <p class="hero-action-note">Code coming soon.</p>
+        </div>
+      </section>
+
+      <section class="abstract-section" id="abstract">
+        <div class="container intro-shell">
+          <div class="section-intro intro-head">
+            <p class="section-kicker">Abstract</p>
+            <h2>World models, reframed as differentiable simulators</h2>
+          </div>
+
+          <div class="intro-body">
+            <p>
+              We present OrbiSim, a novel robotic simulation paradigm that
+              redefines world models as a
+              <strong>fully differentiable physics engine</strong> for
+              embodied intelligence. Unlike prior world models that focus on
+              unconstrained imagination in latent or visual domains, OrbiSim
+              establishes a
+              <strong>unified, physically-grounded pathway</strong> that
+              bridges <strong>structured scene assets</strong>,
+              <strong>neural dynamics</strong>, and downstream reinforcement
+              learning.
+            </p>
+            <p>
+              By enabling
+              <strong>end-to-end differentiability throughout the entire
+              simulation loop</strong>&mdash;spanning from explicit state
+              transitions to visual observation generation&mdash;OrbiSim
+              supports tasks traditionally intractable for classical
+              simulators, such as
+              <strong>differentiable contact modeling</strong>,
+              <strong>gradient-based policy optimization under sparse
+              rewards</strong>, and
+              <strong>intuitive physical inference</strong>.
+            </p>
+            <p>
+              Empirical results demonstrate that OrbiSim
+              <strong>significantly outperforms state-of-the-art world
+              models</strong> in both
+              <strong>predictive fidelity and control performance</strong>.
+              Furthermore, its consistent responsiveness to
+              <strong>asset configurations and physical parameters</strong>
+              suggests its potential as a differentiable tool for
+              <strong>enhancing robot simulation and policy training</strong>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="overview-section" id="overview">
+        <div class="container section-intro">
+          <p class="section-kicker">Overview</p>
+          <h2>The core pipeline of OrbiSim</h2>
+          <p class="section-copy">
+            The model couples asset-conditioned dynamics with state-guided
+            vision, enabling analytical gradients through the simulation loop
+            for system identification and policy optimization.
+          </p>
+        </div>
+
+        <div class="overview-frame">
+          <img
+            src="./assets/overview.png"
+            alt="Overview figure of OrbiSim showing the asset-conditioned representation, decoupled dynamics and vision modules, and end-to-end differentiability for optimization."
+          />
+        </div>
+      </section>
+
+      <section class="strengths-section" id="strengths">
+        <div class="container">
+          <div class="section-intro strengths-intro">
+            <p class="section-kicker">Core Strengths</p>
+            <h2>Three ideas shape the OrbiSim design</h2>
+            <p class="section-copy strengths-copy">
+              The architecture is built around a small set of principles that
+              connect representation, prediction, and optimization in a single
+              differentiable simulation pipeline.
+            </p>
+          </div>
+
+          <div class="strengths-grid">
+            <article class="strength-item">
+              <h3>General-purpose world representation</h3>
+              <p>
+                OrbiSim adopts an asset-conditioned representation interface
+                that supports heterogeneous object types through appropriate
+                state and geometry encodings, rather than being limited to a
+                task-specific design.
+              </p>
+            </article>
+
+            <article class="strength-item">
+              <h3>Decoupled dynamics and vision</h3>
+              <p>
+                By decoupling the neural architecture into interlinked dynamics
+                and rendering modules, OrbiSim simultaneously predicts precise
+                physical states and high-fidelity visual observations and
+                enables seamless integration with existing simulation
+                platforms.
+              </p>
+            </article>
+
+            <article class="strength-item">
+              <h3>End-to-end differentiability</h3>
+              <p>
+                The differentiable pipeline facilitates Real-to-Sim system
+                identification over scene parameters and gradient-based policy
+                optimization for downstream control.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="experiments-section" id="experiments">
+        <div class="container">
+          <div class="section-intro experiments-intro">
+            <p class="section-kicker">Experiments</p>
+            <h2>Generative fidelity and downstream control</h2>
+            <p class="section-copy experiments-copy">
+              We evaluate OrbiSim as both a generative world model and a
+              differentiable execution engine, focusing on generative fidelity
+              and physical consistency under varying configurations, as well as
+              the benefits of differentiable gradient pathways for downstream
+              reinforcement learning.
+            </p>
+          </div>
+
+          <div class="results-block">
+            <div class="results-copy">
+              <p class="results-kicker">Generative and Physical Fidelity</p>
+              <h3>Performance on benchmark manipulation tasks</h3>
+              <p>
+                As shown in Table 1, OrbiSim (Final) consistently achieves
+                state-of-the-art performance across all metrics and horizons.
+                Compared with AdaWorld and Vid2World, OrbiSim maintains
+                superior temporal coherence and lower trajectory error,
+                demonstrating a more robust alignment between physical dynamics
+                and visual synthesis.
+              </p>
+            </div>
+
+            <div class="artifact-block">
+              <div class="artifact-head">
+                <h4>Video-level world modeling performance</h4>
+              </div>
+              <div class="table-shell">
+                <table class="metrics-table">
+                  <thead>
+                    <tr>
+                      <th>Method</th>
+                      <th>PSNR10 ↑</th>
+                      <th>PSNR100 ↑</th>
+                      <th>LPIPS10 ↓</th>
+                      <th>LPIPS100 ↓</th>
+                      <th>FVD ↓</th>
+                      <th>TrajErr ↓</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>Vid2World</th>
+                      <td>22.2014</td>
+                      <td>17.8856</td>
+                      <td>0.1312</td>
+                      <td>0.2551</td>
+                      <td>1750.1</td>
+                      <td>0.6754</td>
+                    </tr>
+                    <tr>
+                      <th>AdaWorld</th>
+                      <td>26.6647</td>
+                      <td>12.8346</td>
+                      <td>0.1183</td>
+                      <td>0.3482</td>
+                      <td>1305.8</td>
+                      <td>1.8597</td>
+                    </tr>
+                    <tr class="separator">
+                      <th>Orbisim w/o Decoupling</th>
+                      <td class="is-best">27.9346</td>
+                      <td class="is-second">19.9510</td>
+                      <td>0.1188</td>
+                      <td>0.1799</td>
+                      <td>689.1</td>
+                      <td>0.8134</td>
+                    </tr>
+                    <tr>
+                      <th>Orbisim w/o Random Sampling</th>
+                      <td>26.6890</td>
+                      <td>19.1119</td>
+                      <td class="is-best">0.1076</td>
+                      <td>0.1669</td>
+                      <td class="is-second">531.2</td>
+                      <td>0.5742</td>
+                    </tr>
+                    <tr>
+                      <th>Orbisim w/o Object-Centric</th>
+                      <td>25.9373</td>
+                      <td>19.7581</td>
+                      <td>0.1123</td>
+                      <td class="is-second">0.1463</td>
+                      <td class="is-best">524.5</td>
+                      <td class="is-second">0.4687</td>
+                    </tr>
+                    <tr class="final-row">
+                      <th>Orbisim (Final)</th>
+                      <td class="is-second">26.7105</td>
+                      <td class="is-best">19.9819</td>
+                      <td class="is-second">0.1078</td>
+                      <td class="is-best">0.1428</td>
+                      <td>533.9</td>
+                      <td class="is-best">0.4468</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="artifact-caption">
+                We report PSNR and LPIPS at different rollout horizons (10 /
+                100 steps), together with the overall FVD score. <em>TrajErr</em>
+                measures the discrepancy between inferred physical states from
+                generated videos and the corresponding true trajectories. All
+                models perform autoregressive rollouts from shared initial
+                states.
+              </p>
+            </div>
+
+          </div>
+
+          <div class="results-block">
+            <div class="results-copy">
+              <p class="results-kicker">Qualitative Task Videos</p>
+              <h3>Rollouts across pushing, stacking, articulation, and draping</h3>
+              <p>
+                We visualize four physics-rich settings used throughout the
+                paper: robotsuite <code class="inline-task-token">Push</code>
+                under varying friction, Isaac Lab
+                <code class="inline-task-token">Stack</code>, AdaManip
+                <code class="inline-task-token">Articulated</code>, and
+                Physion <code class="inline-task-token">Drape</code>.
+                Together, these
+                rollouts highlight sensitivity to physical parameters,
+                long-horizon stability, joint-constrained part motion, and
+                geometry-conditioned cloth deformation under the same
+                asset-conditioned simulation framework.
+              </p>
+            </div>
+
+            <div class="video-tabs" role="tablist" aria-label="Task video comparisons">
+              <button
+                class="task-tab is-active"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                aria-controls="task-push"
+                id="tab-push"
+                data-task-target="task-push"
+              >
+                Push
+              </button>
+              <button
+                class="task-tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="task-stack"
+                id="tab-stack"
+                data-task-target="task-stack"
+              >
+                Stack
+              </button>
+              <button
+                class="task-tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="task-articulated"
+                id="tab-articulated"
+                data-task-target="task-articulated"
+              >
+                Articulated
+              </button>
+              <button
+                class="task-tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="task-drape"
+                id="tab-drape"
+                data-task-target="task-drape"
+              >
+                Drape
+              </button>
+            </div>
+
+            <div class="task-panel is-active" id="task-push" role="tabpanel" aria-labelledby="tab-push" data-video-group>
+              <div class="task-summary">
+                Robotsuite <code class="inline-task-token">Push</code> fixes
+                the same initial visual observation and replays the same
+                action sequence under different friction settings. OrbiSim
+                responds to the changed physical parameter with distinct,
+                physically consistent rollouts.
+              </div>
+              <div class="comparison-grid push-grid">
+                <div class="comparison-card">
+                  <div class="comparison-label">GT / High friction</div>
+                  <video autoplay muted playsinline preload="auto">
+                    <source src="./videos_processed/push_high_f_gt.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="comparison-card">
+                  <div class="comparison-label">GT / Low friction</div>
+                  <video autoplay muted playsinline preload="auto">
+                    <source src="./videos_processed/push_low_f_gt.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="comparison-card">
+                  <div class="comparison-label is-ours">OrbiSim / High friction</div>
+                  <video autoplay muted playsinline preload="auto">
+                    <source src="./videos_processed/push_high_f_OrbiSim.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="comparison-card">
+                  <div class="comparison-label is-ours">OrbiSim / Low friction</div>
+                  <video autoplay muted playsinline preload="auto">
+                    <source src="./videos_processed/push_low_f_OrbiSim.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+            </div>
+
+            <div class="task-panel" id="task-stack" role="tabpanel" aria-labelledby="tab-stack" data-video-group hidden>
+              <div class="task-summary">
+                Isaac Lab <code class="inline-task-token">Stack</code>
+                requires a Franka arm to sequentially stack three cubes,
+                demanding long-horizon stability and precise multi-object
+                interaction over 200+ simulation steps.
+              </div>
+              <div class="comparison-grid">
+                <div class="comparison-card">
+                  <div class="comparison-label">GT</div>
+                  <video autoplay muted playsinline preload="auto">
+                    <source src="./videos_processed/stack_gt.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="comparison-card">
+                  <div class="comparison-label is-ours">OrbiSim (Ours)</div>
+                  <video autoplay muted playsinline preload="auto">
+                    <source src="./videos_processed/stack_OrbiSim.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+            </div>
+
+            <div class="task-panel" id="task-articulated" role="tabpanel" aria-labelledby="tab-articulated" data-video-group hidden>
+              <div class="task-summary">
+                AdaManip
+                <code class="inline-task-token">Articulated</code> features
+                robot interaction with joint-constrained objects of diverse
+                shapes and mechanisms, testing whether the model can preserve
+                articulated part motion over autoregressive rollouts.
+              </div>
+              <div class="comparison-grid">
+                <div class="comparison-card">
+                  <div class="comparison-label">GT</div>
+                  <video autoplay muted playsinline preload="auto">
+                    <source src="./videos_processed/articulated_gt.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="comparison-card">
+                  <div class="comparison-label is-ours">OrbiSim (Ours)</div>
+                  <video autoplay muted playsinline preload="auto">
+                    <source src="./videos_processed/articulated_OrbiSim.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+            </div>
+
+            <div class="task-panel" id="task-drape" role="tabpanel" aria-labelledby="tab-drape" data-video-group hidden>
+              <div class="task-summary">
+                Physion <code class="inline-task-token">Drape</code>
+                evaluates deformable cloth dynamics as a cloth falls onto
+                rigid objects with varying geometries, emphasizing
+                geometry-conditioned deformation under the same simulation
+                pipeline.
+              </div>
+              <div class="comparison-grid">
+                <div class="comparison-card">
+                  <div class="comparison-label">GT</div>
+                  <video autoplay muted playsinline preload="auto">
+                    <source src="./videos_processed/drape_gt.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="comparison-card">
+                  <div class="comparison-label is-ours">OrbiSim (Ours)</div>
+                  <video autoplay muted playsinline preload="auto">
+                    <source src="./videos_processed/drape_OrbiSim.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="results-block">
+            <div class="results-copy">
+              <p class="results-kicker">Downstream Control</p>
+              <h3>Differentiability evaluation on policy optimization</h3>
+              <p>
+                While the sparse episodic reward design makes credit assignment
+                particularly challenging, OrbiSim differs from traditional
+                black-box simulators by exposing analytical gradient pathways
+                that propagate task-specific reward signals directly to the
+                policy parameters. As shown in the training curves and rollout
+                comparisons below, OrbiSim achieves superior performance and
+                convergence speed compared with model-free, model-based, and
+                imitation baselines.
+              </p>
+            </div>
+
+            <div class="artifact-block">
+              <div class="artifact-head">
+                <h4>
+                  Training curves on the robotsuite
+                  <code class="inline-task-token">Push</code> task
+                </h4>
+              </div>
+              <div class="artifact-description">
+                <p>
+                  In the robotsuite
+                  <code class="inline-task-token">Push</code> task, the goal
+                  is to push the first cube into the second one so that, after
+                  the collision, the second cube comes to rest as close as
+                  possible to the left table edge without falling off.
+                </p>
+                <p>
+                  The reward is decomposed into three terms:
+                  <code class="reward-token">r1</code> encourages the end
+                  effector to approach the first cube,
+                  <code class="reward-token">r2</code> encourages the first
+                  cube to move into the second cube, and
+                  <code class="reward-token">r3</code> encourages the second
+                  cube to settle near the left edge while remaining on the
+                  table.
+                </p>
+              </div>
+              <figure class="paper-figure single-figure">
+                <a
+                  href="./assets/results/rl_training_curves_combined.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="figure-image-link"
+                >
+                  <img
+                    src="./assets/results/rl_training_curves_combined.png"
+                    alt="Training curves on the robotsuite Push task with a shared legend and four subplots for r1, r2, r3, and total reward."
+                  />
+                </a>
+                <figcaption>
+                  The x-axis denotes training episodes and the y-axis denotes
+                  normalized episode rewards defined in the paper, namely
+                  <em>r1</em>, <em>r2</em>, <em>r3</em>, and the total reward.
+                </figcaption>
+              </figure>
+            </div>
+
+            <div class="artifact-block">
+              <div class="artifact-head">
+                <h4>
+                  Rollout comparison on the robotsuite
+                  <code class="inline-task-token">Push</code> task
+                </h4>
+              </div>
+              <div
+                class="comparison-grid rollout-video-grid"
+                data-sync-video-group
+              >
+                <div class="comparison-card">
+                  <div class="comparison-label is-ours">OrbiSim</div>
+                  <video muted playsinline preload="auto">
+                    <source src="./videos_processed/rollout_orbisim.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="comparison-card">
+                  <div class="comparison-label">DreamerV3</div>
+                  <video muted playsinline preload="auto">
+                    <source src="./videos_processed/rollout_dreamer.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="comparison-card">
+                  <div class="comparison-label">Behavior Cloning</div>
+                  <video muted playsinline preload="auto">
+                    <source src="./videos_processed/rollout_bc.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="comparison-card">
+                  <div class="comparison-label">SAC</div>
+                  <video muted playsinline preload="auto">
+                    <source src="./videos_processed/rollout_sac.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="comparison-card">
+                  <div class="comparison-label">PPO</div>
+                  <video muted playsinline preload="auto">
+                    <source src="./videos_processed/rollout_ppo.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="comparison-card">
+                  <div class="comparison-label">PPO+RND</div>
+                  <video muted playsinline preload="auto">
+                    <source src="./videos_processed/rollout_ppo_rnd.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+              <p class="artifact-caption">
+                Policies trained with model-free RL fail to learn effective
+                behaviors for the downstream task, while DreamerV3 and
+                behavior cloning remain less stable under long-horizon
+                interactions. In contrast, <strong>OrbiSim</strong> produces
+                coherent and goal-directed behaviors across different
+                scenarios.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="citation-section" id="citation">
+        <div class="container">
+          <div class="section-intro">
+            <p class="section-kicker">Citation</p>
+            <h2>BibTeX</h2>
+          </div>
+
+          <pre class="bibtex-block"><code>@misc{li2026orbisimworldmodelsdifferentiable,
+      title={OrbiSim: World Models as Differentiable Physics Engines for Embodied Intelligence},
+      author={Jiajian Li and Jingyuan Huang and Junru Gong and Qi Wang and Xiaokang Yang and Yunbo Wang},
+      year={2026},
+      eprint={2605.16395},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2605.16395},
+}</code></pre>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

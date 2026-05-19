@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jiajian Li（李佳键）</title>
+    <meta
+      name="description"
+      content="Jiajian Li is a PhD student working on world models, reinforcement learning, and embodied AI."
+    />
+    <style>
+
+      :root {
+        --bg: #f7f4ef;
+        --surface: #fcfbf8;
+        --text: #162334;
+        --muted: #58697d;
+        --line: rgba(24, 37, 54, 0.14);
+        --line-strong: rgba(24, 37, 54, 0.22);
+        --accent: #21466f;
+        --accent-soft: rgba(33, 70, 111, 0.06);
+        --copy-width: 46rem;
+        --hero-avatar-width: 132px;
+        --hero-column-gap: 2rem;
+        --max-width: 1080px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .container {
+        width: min(calc(100% - 2rem), var(--max-width));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid rgba(24, 37, 54, 0.08);
+        backdrop-filter: blur(14px);
+        background: rgba(247, 244, 239, 0.9);
+      }
+
+      .header-inner {
+        min-height: 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.25rem;
+      }
+
+      .brand {
+        font-size: 0.92rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .section-nav {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        color: var(--muted);
+        font-size: 0.96rem;
+      }
+
+      .section-nav a {
+        transition: color 140ms ease;
+      }
+
+      .section-nav a:hover,
+      .section-nav a:focus-visible {
+        color: var(--accent);
+      }
+
+      .hero {
+        padding: 5.5rem 0 3.6rem;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 132px minmax(0, 1fr);
+        gap: 2rem;
+        align-items: start;
+      }
+
+      .avatar {
+        width: 132px;
+        height: 132px;
+        border-radius: 28px;
+        object-fit: cover;
+        object-position: center;
+        background: #ffffff;
+        box-shadow: 0 18px 44px rgba(22, 35, 52, 0.08);
+      }
+
+      .hero-copy {
+        width: min(100%, var(--copy-width));
+        justify-self: start;
+      }
+
+      .kicker,
+      .section-kicker {
+        margin: 0 0 0.95rem;
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0.75rem 0.95rem;
+        font-size: clamp(2.6rem, 5vw, 4.1rem);
+        line-height: 1;
+        font-weight: 650;
+      }
+
+      .name-en {
+        display: inline-block;
+      }
+
+      .name-zh {
+        display: inline-block;
+        font-size: 1.42rem;
+        font-weight: 560;
+        color: var(--muted);
+        letter-spacing: 0.02em;
+      }
+
+      .role {
+        margin-top: 1.25rem;
+        font-size: 1.18rem;
+        font-weight: 600;
+      }
+
+      .affiliation {
+        width: min(
+          100%,
+          calc(var(--copy-width) - var(--hero-avatar-width) - var(--hero-column-gap))
+        );
+        margin-top: 0.8rem;
+        font-size: 1rem;
+        line-height: 1.85;
+        color: var(--muted);
+      }
+
+      .affiliation a,
+      .bio a,
+      .publication-links a,
+      .publication-authors a {
+        color: var(--accent);
+      }
+
+      .affiliation a:hover,
+      .bio a:hover,
+      .publication-links a:hover,
+      .publication-authors a:hover {
+        text-decoration: underline;
+        text-decoration-thickness: 0.08em;
+        text-underline-offset: 0.16em;
+      }
+
+      .social-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1.8rem;
+      }
+
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 3.5rem;
+        height: 3.5rem;
+        border: 1px solid transparent;
+        box-shadow: 0 14px 28px rgba(22, 35, 52, 0.08);
+        transition:
+          transform 140ms ease,
+          box-shadow 140ms ease,
+          border-color 140ms ease;
+      }
+
+      .social-link:hover,
+      .social-link:focus-visible {
+        transform: translateY(-1px);
+        box-shadow: 0 18px 30px rgba(22, 35, 52, 0.12);
+      }
+
+      .social-link svg {
+        width: 1.78rem;
+        height: 1.78rem;
+        fill: #ffffff;
+      }
+
+      .social-link.email {
+        border-radius: 1rem;
+        background: linear-gradient(180deg, #28b2ff 0%, #1297eb 100%);
+      }
+
+      .social-link.scholar {
+        border-radius: 999px;
+        background: linear-gradient(180deg, #408cff 0%, #2d6fe3 100%);
+      }
+
+      .social-link.github {
+        border-radius: 999px;
+        background: #17181c;
+      }
+
+      .about-section,
+      .publications-section {
+        padding: 0 0 5rem;
+      }
+
+      .section-intro {
+        max-width: 52rem;
+        margin-bottom: 2rem;
+      }
+
+      .section-intro h2 {
+        font-size: clamp(2rem, 3.4vw, 3rem);
+        line-height: 1.04;
+        font-weight: 650;
+      }
+
+      .section-copy {
+        max-width: 46rem;
+        margin-top: 1rem;
+        font-size: 1.02rem;
+        line-height: 1.82;
+        color: var(--muted);
+      }
+
+      .bio {
+        width: min(100%, var(--copy-width));
+        font-size: 1.03rem;
+        line-height: 1.9;
+        color: rgba(22, 35, 52, 0.88);
+      }
+
+      .bio p + p {
+        margin-top: 1rem;
+      }
+
+      .publication-item {
+        display: grid;
+        grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+        gap: 2rem;
+        align-items: start;
+        padding-top: 1.6rem;
+        padding-bottom: 1.35rem;
+        border-top: 1px solid var(--line-strong);
+      }
+
+      .publication-cover {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        overflow: hidden;
+        background: rgba(252, 251, 248, 0.82);
+      }
+
+      .publication-cover img {
+        width: 100%;
+        height: auto;
+      }
+
+      .publication-meta {
+        max-width: 40rem;
+      }
+
+      .publication-status {
+        margin: 0 0 0.85rem;
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .publication-title {
+        font-size: clamp(1.55rem, 2vw, 2rem);
+        line-height: 1.14;
+        font-weight: 650;
+      }
+
+      .publication-authors,
+      .publication-note {
+        margin-top: 0.95rem;
+        font-size: 1rem;
+        line-height: 1.8;
+        color: rgba(22, 35, 52, 0.88);
+      }
+
+      .publication-authors strong {
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      .publication-authors sup {
+        position: relative;
+        top: -0.22em;
+        margin-left: 0.06em;
+        font-size: 0.68em;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .publication-note {
+        color: var(--muted);
+      }
+
+      .publication-note.publication-venue {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 3rem;
+        margin: 0;
+        padding: 0.34rem 0.72rem;
+        border-radius: 999px;
+        background: rgba(33, 70, 111, 0.09);
+        color: #2a5f96;
+        font-size: 0.9rem;
+        font-weight: 650;
+        letter-spacing: 0.02em;
+      }
+
+      .publication-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-top: 1.45rem;
+      }
+
+      .publication-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        margin-top: 0;
+        margin-left: auto;
+        justify-content: flex-end;
+      }
+
+      .publication-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        min-height: 3rem;
+        padding: 0.7rem 1.1rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(252, 251, 248, 0.8);
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text);
+        transition:
+          border-color 140ms ease,
+          background 140ms ease,
+          color 140ms ease;
+      }
+
+      .publication-links a:hover {
+        border-color: rgba(22, 35, 52, 0.22);
+        background: rgba(33, 70, 111, 0.08);
+        text-decoration: none;
+      }
+
+      .publication-links a[aria-disabled="true"] {
+        opacity: 0.7;
+        pointer-events: none;
+        cursor: default;
+      }
+
+      .publication-link-icon {
+        width: 1rem;
+        height: 1rem;
+        flex: 0 0 auto;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.9;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .publication-link-icon.is-fill {
+        fill: currentColor;
+        stroke: none;
+      }
+
+      @media (max-width: 860px) {
+        .hero {
+          padding-top: 4.25rem;
+        }
+
+        .hero-grid,
+        .publication-item {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-grid {
+          gap: 1.4rem;
+        }
+
+        .hero-copy,
+        .affiliation,
+        .bio,
+        .section-copy,
+        .publication-meta {
+          max-width: none;
+          width: auto;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .container {
+          width: min(calc(100% - 1.5rem), var(--max-width));
+        }
+
+        .site-header {
+          backdrop-filter: none;
+        }
+
+        .header-inner {
+          min-height: 4.4rem;
+        }
+
+        .section-nav {
+          gap: 1rem;
+          font-size: 0.9rem;
+        }
+
+        .hero-grid {
+          text-align: center;
+        }
+
+        .avatar {
+          width: 112px;
+          height: 112px;
+          margin: 0 auto;
+          border-radius: 24px;
+        }
+
+        h1,
+        .social-row,
+        .publication-links {
+          justify-content: center;
+        }
+
+        .publication-actions {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .publication-actions .publication-links {
+          margin-left: 0;
+          justify-content: flex-start;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">JIAJIAN LI</div>
+        <nav class="section-nav" aria-label="Primary">
+          <a href="#about">About</a><a href="#publications">Publications</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="top">
+        <div class="container hero-grid">
+          <img
+            class="avatar"
+            src="./assets/avatar.png"
+            alt="Avatar for Jiajian Li"
+          />
+
+          <div class="hero-copy">
+            <p class="kicker">Homepage</p>
+            <h1>
+              <span class="name-en">Jiajian Li</span>
+              <span class="name-zh">李佳键</span>
+            </h1>
+            <p class="role">PhD Student</p>
+            <p class="affiliation"><a href="https://ai.sjtu.edu.cn/" target="_blank" rel="noreferrer">MoE Key Lab of Artificial Intelligence, AI Institute</a>, <a href="https://www.cs.sjtu.edu.cn/" target="_blank" rel="noreferrer">School of Computer Science</a>, <a href="https://www.sjtu.edu.cn/" target="_blank" rel="noreferrer">Shanghai Jiao Tong University</a></p>
+
+            <div class="social-row" aria-label="Contact links">
+              
+        <a
+          class="social-link email"
+          href="mailto:jjlee85@sjtu.edu.cn"
+          
+          aria-label="Email"
+          title="Email"
+        >
+          
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3.5 6.25A1.75 1.75 0 0 1 5.25 4.5h13.5A1.75 1.75 0 0 1 20.5 6.25v11.5a1.75 1.75 0 0 1-1.75 1.75H5.25A1.75 1.75 0 0 1 3.5 17.75zm1.98-.25 6.52 5.6 6.52-5.6zM19 7.32l-6.02 5.17a1.5 1.5 0 0 1-1.96 0L5 7.32v10.43c0 .14.11.25.25.25h13.5a.25.25 0 0 0 .25-.25z" />
+      </svg>
+    
+        </a>
+      
+        <a
+          class="social-link scholar"
+          href="https://scholar.google.com/citations?hl=en&amp;user=IbCwSh4AAAAJ"
+          target="_blank" rel="noreferrer"
+          aria-label="Google Scholar"
+          title="Google Scholar"
+        >
+          
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3 2.75 8 12 13 21.25 8zm-4.25 9.43v3.96c0 1.9 2.12 3.36 4.25 3.36s4.25-1.46 4.25-3.36v-3.96L12 14.67z" />
+        <path d="M20.45 9.27v5.92a.85.85 0 1 1-1.7 0v-5.1z" />
+      </svg>
+    
+        </a>
+      
+        <a
+          class="social-link github"
+          href="https://github.com/jjleejj85"
+          target="_blank" rel="noreferrer"
+          aria-label="GitHub"
+          title="GitHub"
+        >
+          
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 2.5a9.5 9.5 0 0 0-3 18.52c.48.09.66-.2.66-.47v-1.67c-2.69.59-3.26-1.14-3.26-1.14a2.57 2.57 0 0 0-1.08-1.42c-.88-.6.07-.59.07-.59a2.04 2.04 0 0 1 1.49 1 2.09 2.09 0 0 0 2.86.8 2.06 2.06 0 0 1 .62-1.29c-2.15-.24-4.41-1.08-4.41-4.81a3.77 3.77 0 0 1 1-2.61 3.49 3.49 0 0 1 .09-2.57s.82-.26 2.68 1a9.22 9.22 0 0 1 4.88 0c1.86-1.27 2.68-1 2.68-1a3.49 3.49 0 0 1 .09 2.57 3.77 3.77 0 0 1 1 2.61c0 3.74-2.27 4.56-4.43 4.8a2.3 2.3 0 0 1 .66 1.79v2.65c0 .27.17.57.67.47A9.5 9.5 0 0 0 12 2.5" />
+    </svg>
+  
+        </a>
+      
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section" id="about">
+        <div class="container">
+          <div class="section-intro">
+            <p class="section-kicker">About</p>
+            <h2>Biography</h2>
+          </div>
+
+          <div class="bio">
+            <p>I am a PhD student at Shanghai Jiao Tong University, advised by <a href="https://wyb15.github.io/" target="_blank" rel="noreferrer">Yunbo Wang</a>. My research interests include world models, reinforcement learning, and embodied AI.</p>
+<p>I am broadly interested in building physically grounded models that connect perception, dynamics, and control for intelligent agents, with a particular focus on simulation and embodied decision making.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="publications-section" id="publications">
+        <div class="container">
+          <div class="section-intro">
+            <p class="section-kicker">Publications</p>
+            <h2>Selected Works</h2>
+          </div>
+
+          
+    <article class="publication-item">
+      <a class="publication-cover" href="https://jjleejj85.github.io/projects/orbisim" target="_blank" rel="noreferrer">
+        <img
+          src="./assets/orbisim.png"
+          alt="Overview figure for OrbiSim"
+        />
+      </a>
+
+      <div class="publication-meta">
+        <p class="publication-status">World Model / Embodied AI</p>
+        <h3 class="publication-title">OrbiSim: World Models as Differentiable Physics Engines for Embodied Intelligence</h3>
+        <p class="publication-authors">
+          <strong>Jiajian Li<sup>*</sup></strong>, Jingyuan Huang<sup>*</sup>, Junru Gong<sup>*</sup>, Qi Wang, Xiaokang Yang, Yunbo Wang<sup>†</sup>
+        </p>
+        <div class="publication-actions">
+          <p class="publication-note publication-venue">arXiv</p>
+          <div class="publication-links">
+            
+        <a href="https://arxiv.org/pdf/2605.16395" target="_blank" rel="noreferrer">
+          
+      <svg class="publication-link-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+        <path d="M14 3v5h5" />
+        <path d="M9 13h6" />
+        <path d="M9 17h4.5" />
+      </svg>
+    
+          <span>PDF</span>
+        </a>
+      
+        <a href="./projects/orbisim/index.html" target="_blank" rel="noreferrer">
+          
+      <svg class="publication-link-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18" />
+        <path d="M12 3a14.5 14.5 0 0 1 0 18" />
+        <path d="M12 3a14.5 14.5 0 0 0 0 18" />
+      </svg>
+    
+          <span>Website</span>
+        </a>
+      
+        <a href="#" aria-disabled="true">
+          
+    <svg class="publication-link-icon is-fill" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 2.5a9.5 9.5 0 0 0-3 18.52c.48.09.66-.2.66-.47v-1.67c-2.69.59-3.26-1.14-3.26-1.14a2.57 2.57 0 0 0-1.08-1.42c-.88-.6.07-.59.07-.59a2.04 2.04 0 0 1 1.49 1 2.09 2.09 0 0 0 2.86.8 2.06 2.06 0 0 1 .62-1.29c-2.15-.24-4.41-1.08-4.41-4.81a3.77 3.77 0 0 1 1-2.61 3.49 3.49 0 0 1 .09-2.57s.82-.26 2.68 1a9.22 9.22 0 0 1 4.88 0c1.86-1.27 2.68-1 2.68-1a3.49 3.49 0 0 1 .09 2.57 3.77 3.77 0 0 1 1 2.61c0 3.74-2.27 4.56-4.43 4.8a2.3 2.3 0 0 1 .66 1.79v2.65c0 .27.17.57.67.47A9.5 9.5 0 0 0 12 2.5" />
+    </svg>
+  
+          <span>Code</span>
+        </a>
+      
+          </div>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="publication-item">
+      <a class="publication-cover" href="https://panmt.github.io/VeoRL.github.io" target="_blank" rel="noreferrer">
+        <img
+          src="./assets/veorl.png"
+          alt="Overview figure for VeoRL"
+        />
+      </a>
+
+      <div class="publication-meta">
+        <p class="publication-status">Reinforcement Learning / World Model</p>
+        <h3 class="publication-title">Video-Enhanced Offline Reinforcement Learning: A Model-Based Approach</h3>
+        <p class="publication-authors">
+          Minting Pan, Yitao Zheng, <strong>Jiajian Li</strong>, Yunbo Wang<sup>†</sup>, Xiaokang Yang
+        </p>
+        <div class="publication-actions">
+          <p class="publication-note publication-venue">ICML 2025</p>
+          <div class="publication-links">
+            
+        <a href="https://arxiv.org/pdf/2505.06482" target="_blank" rel="noreferrer">
+          
+      <svg class="publication-link-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+        <path d="M14 3v5h5" />
+        <path d="M9 13h6" />
+        <path d="M9 17h4.5" />
+      </svg>
+    
+          <span>PDF</span>
+        </a>
+      
+        <a href="https://panmt.github.io/VeoRL.github.io" target="_blank" rel="noreferrer">
+          
+      <svg class="publication-link-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18" />
+        <path d="M12 3a14.5 14.5 0 0 1 0 18" />
+        <path d="M12 3a14.5 14.5 0 0 0 0 18" />
+      </svg>
+    
+          <span>Website</span>
+        </a>
+      
+        <a href="https://github.com/panmt/VeoRL" target="_blank" rel="noreferrer">
+          
+    <svg class="publication-link-icon is-fill" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 2.5a9.5 9.5 0 0 0-3 18.52c.48.09.66-.2.66-.47v-1.67c-2.69.59-3.26-1.14-3.26-1.14a2.57 2.57 0 0 0-1.08-1.42c-.88-.6.07-.59.07-.59a2.04 2.04 0 0 1 1.49 1 2.09 2.09 0 0 0 2.86.8 2.06 2.06 0 0 1 .62-1.29c-2.15-.24-4.41-1.08-4.41-4.81a3.77 3.77 0 0 1 1-2.61 3.49 3.49 0 0 1 .09-2.57s.82-.26 2.68 1a9.22 9.22 0 0 1 4.88 0c1.86-1.27 2.68-1 2.68-1a3.49 3.49 0 0 1 .09 2.57 3.77 3.77 0 0 1 1 2.61c0 3.74-2.27 4.56-4.43 4.8a2.3 2.3 0 0 1 .66 1.79v2.65c0 .27.17.57.67.47A9.5 9.5 0 0 0 12 2.5" />
+    </svg>
+  
+          <span>Code</span>
+        </a>
+      
+          </div>
+        </div>
+      </div>
+    </article>
+  
+
+    <article class="publication-item">
+      <a class="publication-cover" href="https://qiwang067.github.io/ls-imagine" target="_blank" rel="noreferrer">
+        <img
+          src="./assets/ls-imagine.png"
+          alt="Overview figure for LS-Imagine"
+        />
+      </a>
+
+      <div class="publication-meta">
+        <p class="publication-status">World Model / Reinforcement Learning</p>
+        <h3 class="publication-title">Open-World Reinforcement Learning over Long Short-Term Imagination</h3>
+        <p class="publication-authors">
+          <strong>Jiajian Li<sup>*</sup></strong>, Qi Wang<sup>*</sup>, Yunbo Wang<sup>†</sup>, Xin Jin, Yang Li, Wenjun Zeng, Xiaokang Yang
+        </p>
+        <div class="publication-actions">
+          <p class="publication-note publication-venue">ICLR 2025 Oral (Top 1.8%)</p>
+          <div class="publication-links">
+            
+        <a href="https://arxiv.org/pdf/2410.03618" target="_blank" rel="noreferrer">
+          
+      <svg class="publication-link-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+        <path d="M14 3v5h5" />
+        <path d="M9 13h6" />
+        <path d="M9 17h4.5" />
+      </svg>
+    
+          <span>PDF</span>
+        </a>
+      
+        <a href="https://qiwang067.github.io/ls-imagine" target="_blank" rel="noreferrer">
+          
+      <svg class="publication-link-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18" />
+        <path d="M12 3a14.5 14.5 0 0 1 0 18" />
+        <path d="M12 3a14.5 14.5 0 0 0 0 18" />
+      </svg>
+    
+          <span>Website</span>
+        </a>
+      
+        <a href="https://github.com/qiwang067/LS-Imagine" target="_blank" rel="noreferrer">
+          
+    <svg class="publication-link-icon is-fill" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 2.5a9.5 9.5 0 0 0-3 18.52c.48.09.66-.2.66-.47v-1.67c-2.69.59-3.26-1.14-3.26-1.14a2.57 2.57 0 0 0-1.08-1.42c-.88-.6.07-.59.07-.59a2.04 2.04 0 0 1 1.49 1 2.09 2.09 0 0 0 2.86.8 2.06 2.06 0 0 1 .62-1.29c-2.15-.24-4.41-1.08-4.41-4.81a3.77 3.77 0 0 1 1-2.61 3.49 3.49 0 0 1 .09-2.57s.82-.26 2.68 1a9.22 9.22 0 0 1 4.88 0c1.86-1.27 2.68-1 2.68-1a3.49 3.49 0 0 1 .09 2.57 3.77 3.77 0 0 1 1 2.61c0 3.74-2.27 4.56-4.43 4.8a2.3 2.3 0 0 1 .66 1.79v2.65c0 .27.17.57.67.47A9.5 9.5 0 0 0 12 2.5" />
+    </svg>
+  
+          <span>Code</span>
+        </a>
+      
+          </div>
+        </div>
+      </div>
+    </article>
+  
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
