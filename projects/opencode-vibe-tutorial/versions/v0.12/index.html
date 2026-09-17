@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode × Vibe Coding</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <progress id="progress-bar" max="100" value="0"></progress>
+
+    <nav id="nav" class="nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-brand">OpenCode × Vibe Coding</a>
+            <ul class="nav-links">
+                <li><a href="#what-is-opencode">是什么</a></li>
+                <li><a href="#install">安装</a></li>
+                <li><a href="#first-use">初次使用</a></li>
+                <li><a href="#vibe-coding">Vibe Coding</a></li>
+                <li><a href="#your-turn">Your Turn</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="hero" class="section hero">
+            <div class="hero-content">
+                <h1 class="hero-title">OpenCode × Vibe Coding</h1>
+                <p class="hero-subtitle">面向《计算机科学导论》本科生的入门教学</p>
+                <a href="#what-is-opencode" class="btn btn-primary">开始探索</a>
+            </div>
+            <div class="hero-decoration" aria-hidden="true"></div>
+        </section>
+
+        <section id="what-is-opencode" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2>OpenCode 是什么</h2>
+                </header>
+
+                <div class="compare-grid">
+                    <article class="compare-card">
+                        <span class="compare-tag">你可能用过</span>
+                        <h3 class="compare-title">普通 AI Chat</h3>
+                        <ol class="steps">
+                            <li>我提出问题</li>
+                            <li>AI 给我代码或建议</li>
+                            <li>我自己复制、修改、运行</li>
+                        </ol>
+                    </article>
+
+                    <div class="compare-vs" aria-hidden="true">VS</div>
+
+                    <article class="compare-card compare-card-accent">
+                        <span class="compare-tag">今天的主角</span>
+                        <h3 class="compare-title">AI Coding Agent</h3>
+                        <ol class="steps">
+                            <li>我描述想做什么</li>
+                            <li>Agent 读取项目</li>
+                            <li>修改文件、运行命令</li>
+                            <li>我查看结果</li>
+                            <li>继续告诉它怎么改</li>
+                        </ol>
+                    </article>
+                </div>
+
+                <div class="about">
+                    <h3>OpenCode</h3>
+                    <p>OpenCode 是一个开源的 AI Coding Agent，可以通过终端、桌面应用或 IDE 使用。它能够进入真实项目，读取代码、修改文件、运行命令，并根据你的反馈继续迭代。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="install" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2>安装 OpenCode</h2>
+                </header>
+
+                <div class="tab-group">
+                    <span class="tab-group-label">方式</span>
+                    <div class="tabs" role="tablist" aria-label="安装方式">
+                        <button class="tab-btn is-active" type="button" data-mode="desktop" role="tab" aria-selected="true">Desktop</button>
+                        <button class="tab-btn" type="button" data-mode="cli" role="tab" aria-selected="false">CLI</button>
+                    </div>
+                </div>
+
+                <div class="tab-group">
+                    <span class="tab-group-label">系统</span>
+                    <div class="tabs" role="tablist" aria-label="操作系统">
+                        <button class="tab-btn is-active" type="button" data-os="macos" role="tab" aria-selected="true">macOS</button>
+                        <button class="tab-btn" type="button" data-os="windows" role="tab" aria-selected="false">Windows</button>
+                        <button class="tab-btn" type="button" data-os="linux" role="tab" aria-selected="false">Linux</button>
+                    </div>
+                </div>
+
+                <div class="install-panel is-visible" data-mode="desktop" data-os="macos" role="tabpanel" aria-hidden="false">
+                    <p class="install-desc">macOS 可以从 OpenCode 官方下载页面获取桌面版安装包，也可以用 Homebrew 一键安装。</p>
+                    <div class="install-command">
+                        <code>brew install --cask opencode-desktop</code>
+                        <button class="copy-btn" type="button" aria-label="复制安装命令">复制</button>
+                    </div>
+                    <a class="install-link" href="https://opencode.ai/zh/download" target="_blank" rel="noopener noreferrer">OpenCode 官方下载页面 →</a>
+                </div>
+
+                <div class="install-panel" data-mode="desktop" data-os="windows" role="tabpanel" aria-hidden="true">
+                    <p class="install-desc">Windows 可以到 OpenCode 官方下载页面直接获取桌面版安装包。</p>
+                    <a class="install-link" href="https://opencode.ai/zh/download" target="_blank" rel="noopener noreferrer">OpenCode 官方下载页面 →</a>
+                </div>
+
+                <div class="install-panel" data-mode="desktop" data-os="linux" role="tabpanel" aria-hidden="true">
+                    <p class="install-desc">Linux 可以到 OpenCode 官方下载页面获取 .deb 或 .rpm 桌面版安装包。</p>
+                    <a class="install-link" href="https://opencode.ai/zh/download" target="_blank" rel="noopener noreferrer">OpenCode 官方下载页面 →</a>
+                </div>
+
+                <div class="install-panel" data-mode="cli" data-os="macos" role="tabpanel" aria-hidden="true">
+                    <p class="install-desc">macOS / Linux 可以使用官方安装脚本，一行命令即可装好 CLI。</p>
+                    <div class="install-command">
+                        <code>curl -fsSL https://opencode.ai/install | bash</code>
+                        <button class="copy-btn" type="button" aria-label="复制安装命令">复制</button>
+                    </div>
+                    <a class="install-link" href="https://opencode.ai/zh/download" target="_blank" rel="noopener noreferrer">OpenCode 官方下载页面 →</a>
+                </div>
+
+                <div class="install-panel" data-mode="cli" data-os="windows" role="tabpanel" aria-hidden="true">
+                    <p class="install-desc">OpenCode 可以直接在 Windows 上运行，但官方推荐使用 WSL 以获得更好的体验，再在 WSL 内安装 OpenCode CLI。</p>
+                    <div class="install-command">
+                        <code>curl -fsSL https://opencode.ai/install | bash</code>
+                        <button class="copy-btn" type="button" aria-label="复制安装命令">复制</button>
+                    </div>
+                    <a class="install-link" href="https://opencode.ai/zh/download" target="_blank" rel="noopener noreferrer">OpenCode 官方下载页面 →</a>
+                </div>
+
+                <div class="install-panel" data-mode="cli" data-os="linux" role="tabpanel" aria-hidden="true">
+                    <p class="install-desc">macOS / Linux 可以使用官方安装脚本，一行命令即可装好 CLI。</p>
+                    <div class="install-command">
+                        <code>curl -fsSL https://opencode.ai/install | bash</code>
+                        <button class="copy-btn" type="button" aria-label="复制安装命令">复制</button>
+                    </div>
+                    <a class="install-link" href="https://opencode.ai/zh/download" target="_blank" rel="noopener noreferrer">OpenCode 官方下载页面 →</a>
+                </div>
+
+                <p class="install-tip">提示：npm、Bun、Chocolatey、Scoop 等其他安装方式这里不逐一展开，需要时可以直接去官方安装页面查看。</p>
+
+                <p class="install-cta-wrap">
+                    <a class="install-cta" href="https://opencode.ai/zh/download" target="_blank" rel="noopener noreferrer">查看官方安装页面 →</a>
+                </p>
+            </div>
+        </section>
+
+        <section id="first-use" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2>第一次使用 OpenCode</h2>
+                </header>
+
+                <p class="first-use-note">这里以 Desktop App 为例。CLI 的核心工作方式也是类似的，只是对话发生在一个终端里。</p>
+
+                <figure class="app-screenshot">
+                    <img src="assets/opencode-app.png" alt="OpenCode Desktop 的实际使用界面截图">
+                    <ol class="markers" aria-hidden="true">
+                        <li class="marker" style="--mx: 55%; --my: 38%;">
+                            <span class="marker-num">1</span>
+                            <span class="marker-label">对话区域</span>
+                        </li>
+                        <li class="marker" style="--mx: 55%; --my: 68%;">
+                            <span class="marker-num">2</span>
+                            <span class="marker-label">Agent 操作过程</span>
+                        </li>
+                        <li class="marker" style="--mx: 55%; --my: 90%;">
+                            <span class="marker-num">3</span>
+                            <span class="marker-label">Prompt 输入框</span>
+                        </li>
+                        <li class="marker" style="--mx: 13%; --my: 88%;">
+                            <span class="marker-num">4</span>
+                            <span class="marker-label">模型选择</span>
+                        </li>
+                    </ol>
+                </figure>
+
+                <ol class="spot-list">
+                    <li>
+                        <span class="spot-num">1</span>
+                        <div>
+                            <p class="spot-title">对话区域</p>
+                            <p class="spot-desc">我和 OpenCode 沟通的地方。</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="spot-num">2</span>
+                        <div>
+                            <p class="spot-title">Agent 的操作过程</p>
+                            <p class="spot-desc">可以看到它实际修改文件、执行任务。</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="spot-num">3</span>
+                        <div>
+                            <p class="spot-title">Prompt 输入框</p>
+                            <p class="spot-desc">直接告诉它你想做什么。</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="spot-num">4</span>
+                        <div>
+                            <p class="spot-title">模型选择</p>
+                            <p class="spot-desc">可以切换当前使用的模型。</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="vibe-coding" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2>第一次 Vibe Coding</h2>
+                </header>
+
+                <p class="vibe-lead">Vibe Coding 不是"一句话生成完美软件"，而是一个不断沟通、判断和修改的迭代过程。</p>
+
+                <div class="loop">
+                    <div class="loop-steps">
+                        <div class="step">
+                            <span class="step-num">1</span>
+                            <span class="step-text">有一个想法</span>
+                        </div>
+                        <div class="step-arrow" aria-hidden="true">→</div>
+                        <div class="step">
+                            <span class="step-num">2</span>
+                            <span class="step-text">告诉 OpenCode</span>
+                        </div>
+                        <div class="step-arrow" aria-hidden="true">→</div>
+                        <div class="step">
+                            <span class="step-num">3</span>
+                            <span class="step-text">看看它做出来什么</span>
+                        </div>
+                        <div class="step-arrow" aria-hidden="true">→</div>
+                        <div class="step">
+                            <span class="step-num">4</span>
+                            <span class="step-text">发现不满意的地方</span>
+                        </div>
+                    </div>
+                    <div class="loop-back">
+                        <span class="loop-back-icon" aria-hidden="true">↻</span>
+                        <p>继续告诉它怎么改，再看看，不满意就再来——<strong>循环下去，而不是一次到位。</strong></p>
+                    </div>
+                </div>
+
+                <div class="example">
+                    <h3>举个例子：Prompt 没有固定写法</h3>
+
+                    <div class="example-case">
+                        <p class="example-case-title">有明确想法时，可以描述得细一点：</p>
+                        <ul class="example-chat">
+                            <li class="example-msg example-msg-user"><span class="example-who">你</span>做一个介绍我家乡的小网页：深色背景，分历史、美食、交通三块内容，标题简洁，手机上看也要舒服</li>
+                            <li class="example-msg example-msg-agent"><span class="example-who">Agent</span>按这些要求创建文件，完成第一版……</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-case">
+                        <p class="example-case-title">只是想微调时，简单说一句就够了：</p>
+                        <ul class="example-chat">
+                            <li class="example-msg example-msg-user"><span class="example-who">你</span>帮我做一个介绍我家乡的小网页</li>
+                            <li class="example-msg example-msg-agent"><span class="example-who">Agent</span>创建文件，做出第一版……</li>
+                            <li class="example-msg example-msg-user"><span class="example-who">你</span>有点太普通了</li>
+                            <li class="example-msg example-msg-agent"><span class="example-who">Agent</span>重新调整设计……</li>
+                            <li class="example-msg example-msg-user"><span class="example-who">你</span>手机上太挤了</li>
+                            <li class="example-msg example-msg-agent"><span class="example-who">Agent</span>优化移动端布局……</li>
+                            <li class="example-msg example-msg-user"><span class="example-who">你</span>标题再简洁一点</li>
+                            <li class="example-msg example-msg-agent"><span class="example-who">Agent</span>修改标题……</li>
+                        </ul>
+                    </div>
+
+                    <p class="example-note">Prompt 没有固定的长度和写法：想法清楚，就描述得细一些；只想微调，一句话就够了。关键不是"写得短"，而是把<strong>自己真正想要的表达清楚</strong>。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="surprise" class="section surprise">
+            <div class="container">
+                <div class="surprise-content">
+                    <p class="surprise-lead">你刚刚看的这个网站本身，也是我们用 OpenCode 一步一步 Vibe Coding 做出来的。</p>
+                    <p class="surprise-text">从空文件夹开始，经历了很多轮新增、调整和纠错。前面介绍 OpenCode Desktop 时用的那张截图，也来自这个网站的一次真实修改。</p>
+                    <a href="#making-of" class="surprise-cta">查看完整开发过程 →</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="making-of" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2>Making of</h2>
+                </header>
+
+                <p class="making-lead">这就是这个网站真实的"出生过程"。下面的每一个版本窗口，都真的来自对应 Git tag 导出的历史版本——可以点击、滚动、亲自看看当时网站长什么样。</p>
+
+                <div class="making-version">
+                    <div class="version-head">
+                        <span class="version-badge">v0.1</span>
+                        <p class="version-summary">先搭出网站的第一版骨架</p>
+                    </div>
+
+                    <div class="oc-window">
+                        <div class="oc-header">
+                            <span class="oc-app">OpenCode · Desktop</span>
+                            <span class="oc-model">模型选择 ▾</span>
+                        </div>
+                        <div class="oc-conversation">
+                            <div class="oc-msg oc-msg-user">
+                                <span class="oc-role">你</span>
+                                <p class="oc-text">初始化整个项目：搭出 8 个章节的基础骨架，完成 Hero、导航和阅读进度条，风格深色简洁、带一点代码感，并初始化 Git 仓库。</p>
+                            </div>
+                            <div class="oc-msg oc-msg-agent">
+                                <span class="oc-role">OpenCode</span>
+                                <div class="oc-text">
+                                    <p class="oc-action">▸ 读取项目目录，从空文件夹开始初始化</p>
+                                    <p class="oc-action">▸ 创建 HTML / CSS / JS 基础文件</p>
+                                    <p class="oc-action">▸ 搭建 8 个章节的占位骨架</p>
+                                    <p class="oc-action">▸ 完成 Hero 区域与"开始探索"按钮</p>
+                                    <p class="oc-action">▸ 添加 sticky 导航与阅读进度条</p>
+                                    <p class="oc-action">▸ 完成基础响应式适配，初始化 Git</p>
+                                    <div class="oc-files">
+                                        <span class="oc-file-label">修改文件</span>
+                                        <span class="oc-file"><em class="oc-add">+</em>index.html</span>
+                                        <span class="oc-file"><em class="oc-add">+</em>style.css</span>
+                                        <span class="oc-file"><em class="oc-add">+</em>script.js</span>
+                                        <span class="oc-file"><em class="oc-add">+</em>assets/</span>
+                                        <span class="oc-file"><em class="oc-add">+</em>MAKING_OF.md</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oc-input" aria-hidden="true">
+                            <span>输入你的需求……</span>
+                        </div>
+                    </div>
+
+                    <div class="preview-window">
+                        <div class="preview-bar">
+                            <span class="preview-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="preview-url">versions/v0.1/index.html</span>
+                        </div>
+                        <iframe src="../v0.1/index.html" title="v0.1 版本预览" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="making-version">
+                    <div class="version-head">
+                        <span class="version-badge">v0.2</span>
+                        <p class="version-summary">开始加入 OpenCode 的介绍</p>
+                    </div>
+
+                    <div class="oc-window">
+                        <div class="oc-header">
+                            <span class="oc-app">OpenCode · Desktop</span>
+                            <span class="oc-model">模型选择 ▾</span>
+                        </div>
+                        <div class="oc-conversation">
+                            <div class="oc-msg oc-msg-user">
+                                <span class="oc-role">你</span>
+                                <p class="oc-text">实现「OpenCode 是什么」章节：用"普通 AI Chat vs AI Coding Agent"的对比让学生一眼看懂区别，再配一段简短的 OpenCode 介绍。</p>
+                            </div>
+                            <div class="oc-msg oc-msg-agent">
+                                <span class="oc-role">OpenCode</span>
+                                <div class="oc-text">
+                                    <p class="oc-action">▸ 实现「OpenCode 是什么」章节</p>
+                                    <p class="oc-action">▸ 设计"普通 AI Chat vs AI Coding Agent"对比</p>
+                                    <p class="oc-action">▸ 加入编号步骤列表与 OpenCode 简介区块</p>
+                                    <p class="oc-action">▸ 适配 ≤768px / ≤480px 移动端</p>
+                                    <div class="oc-files">
+                                        <span class="oc-file-label">修改文件</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>index.html</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>style.css</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oc-input" aria-hidden="true">
+                            <span>输入你的需求……</span>
+                        </div>
+                    </div>
+
+                    <div class="preview-window">
+                        <div class="preview-bar">
+                            <span class="preview-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="preview-url">versions/v0.2/index.html</span>
+                        </div>
+                        <iframe src="../v0.2/index.html" title="v0.2 版本预览" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="making-version">
+                    <div class="version-head">
+                        <span class="version-badge">v0.3</span>
+                        <p class="version-summary">发现问题后回来修正</p>
+                    </div>
+
+                    <div class="oc-window">
+                        <div class="oc-header">
+                            <span class="oc-app">OpenCode · Desktop</span>
+                            <span class="oc-model">模型选择 ▾</span>
+                        </div>
+                        <div class="oc-conversation">
+                            <div class="oc-msg oc-msg-user">
+                                <span class="oc-role">你</span>
+                                <p class="oc-text">这两版整体没问题，但发现两个问题要修：OpenCode 介绍里"运行在终端里"不准确，需要改成可通过终端、桌面应用或 IDE 使用；另外 MAKING_OF 里的原始 Prompt 不能改写总结，没保存原文就标"待补充"，不要自己编。其他内容和样式都不要动。</p>
+                            </div>
+                            <div class="oc-msg oc-msg-agent">
+                                <span class="oc-role">OpenCode</span>
+                                <div class="oc-text">
+                                    <p class="oc-action">▸ 修正 OpenCode 介绍表述（终端 → 终端 / 桌面 / IDE）</p>
+                                    <p class="oc-action">▸ 更新 MAKING_OF 记录规则：原始 Prompt 必须保留原文</p>
+                                    <div class="oc-files">
+                                        <span class="oc-file-label">修改文件</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>index.html</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>MAKING_OF.md</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oc-input" aria-hidden="true">
+                            <span>输入你的需求……</span>
+                        </div>
+                    </div>
+
+                    <div class="preview-window">
+                        <div class="preview-bar">
+                            <span class="preview-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="preview-url">versions/v0.3/index.html</span>
+                        </div>
+                        <iframe src="../v0.3/index.html" title="v0.3 版本预览" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="making-version">
+                    <div class="version-head">
+                        <span class="version-badge">v0.4</span>
+                        <p class="version-summary">做出「安装 OpenCode」章节：Tab 切换 + 可复制命令</p>
+                    </div>
+
+                    <div class="oc-window">
+                        <div class="oc-header">
+                            <span class="oc-app">OpenCode · Desktop</span>
+                            <span class="oc-model">模型选择 ▾</span>
+                        </div>
+                        <div class="oc-conversation">
+                            <div class="oc-msg oc-msg-user">
+                                <span class="oc-role">你</span>
+                                <p class="oc-text">实现「安装 OpenCode」章节：分 Desktop 和 CLI 两种方式，按 macOS / Windows / Linux 切换展示，安装命令可以一键复制，再放一个不抢眼的「查看官方安装页面」入口。不要堆所有安装方法，保持简单。</p>
+                            </div>
+                            <div class="oc-msg oc-msg-agent">
+                                <span class="oc-role">OpenCode</span>
+                                <div class="oc-text">
+                                    <p class="oc-action">▸ 搭建第 3 章节「安装 OpenCode」</p>
+                                    <p class="oc-action">▸ 实现 Desktop / CLI × macOS / Windows / Linux 两层 Tab</p>
+                                    <p class="oc-action">▸ 加入可复制的安装命令与"已复制"反馈</p>
+                                    <p class="oc-action">▸ 放置「查看官方安装页面」入口</p>
+                                    <div class="oc-files">
+                                        <span class="oc-file-label">修改文件</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>index.html</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>style.css</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>script.js</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oc-input" aria-hidden="true">
+                            <span>输入你的需求……</span>
+                        </div>
+                    </div>
+
+                    <div class="preview-window">
+                        <div class="preview-bar">
+                            <span class="preview-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="preview-url">versions/v0.4/index.html</span>
+                        </div>
+                        <iframe src="../v0.4/index.html" title="v0.4 版本预览" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="making-version">
+                    <div class="version-head">
+                        <span class="version-badge">v0.5</span>
+                        <p class="version-summary">修正安装章节的两处表述</p>
+                    </div>
+
+                    <div class="oc-window">
+                        <div class="oc-header">
+                            <span class="oc-app">OpenCode · Desktop</span>
+                            <span class="oc-model">模型选择 ▾</span>
+                        </div>
+                        <div class="oc-conversation">
+                            <div class="oc-msg oc-msg-user">
+                                <span class="oc-role">你</span>
+                                <p class="oc-text">这版整体没问题，但查官方页面时发现一个小错误：Linux Desktop 不是 AppImage 等格式，而是 .deb 和 .rpm；另外 Windows CLI 的表述稍作严谨化。改这两处，其他内容样式都不要动。</p>
+                            </div>
+                            <div class="oc-msg oc-msg-agent">
+                                <span class="oc-role">OpenCode</span>
+                                <div class="oc-text">
+                                    <p class="oc-action">▸ 修正 Linux Desktop 为 .deb / .rpm 安装包</p>
+                                    <p class="oc-action">▸ 严谨化 Windows CLI 关于 WSL 的说明</p>
+                                    <div class="oc-files">
+                                        <span class="oc-file-label">修改文件</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>index.html</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oc-input" aria-hidden="true">
+                            <span>输入你的需求……</span>
+                        </div>
+                    </div>
+
+                    <div class="preview-window">
+                        <div class="preview-bar">
+                            <span class="preview-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="preview-url">versions/v0.5/index.html</span>
+                        </div>
+                        <iframe src="../v0.5/index.html" title="v0.5 版本预览" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="making-version">
+                    <div class="version-head">
+                        <span class="version-badge">v0.6</span>
+                        <p class="version-summary">用真实截图标注「第一次使用」</p>
+                    </div>
+
+                    <div class="oc-window">
+                        <div class="oc-header">
+                            <span class="oc-app">OpenCode · Desktop</span>
+                            <span class="oc-model">模型选择 ▾</span>
+                        </div>
+                        <div class="oc-conversation">
+                            <div class="oc-msg oc-msg-user">
+                                <span class="oc-role">你</span>
+                                <p class="oc-text">实现「第一次使用 OpenCode」章节：用 assets 里的真实桌面截图做主体，标出四个第一次使用最需要认识的地方——对话区域、Agent 操作过程、Prompt 输入框、模型选择，并简单说明 CLI 工作方式类似。不要做成软件说明书。</p>
+                            </div>
+                            <div class="oc-msg oc-msg-agent">
+                                <span class="oc-role">OpenCode</span>
+                                <div class="oc-text">
+                                    <p class="oc-action">▸ 以真实截图为主体，放置四个标注点</p>
+                                    <p class="oc-action">▸ 制作编号对照列表逐条解释</p>
+                                    <p class="oc-action">▸ 补充"Desktop 为例、CLI 类似"的说明</p>
+                                    <div class="oc-files">
+                                        <span class="oc-file-label">修改文件</span>
+                                        <span class="oc-file"><em class="oc-add">+</em>assets/ 截图</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>index.html</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>style.css</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oc-input" aria-hidden="true">
+                            <span>输入你的需求……</span>
+                        </div>
+                    </div>
+
+                    <div class="preview-window">
+                        <div class="preview-bar">
+                            <span class="preview-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="preview-url">versions/v0.6/index.html</span>
+                        </div>
+                        <iframe src="../v0.6/index.html" title="v0.6 版本预览" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="making-version">
+                    <div class="version-head">
+                        <span class="version-badge">v0.7</span>
+                        <p class="version-summary">微调截图标注的位置</p>
+                    </div>
+
+                    <div class="oc-window">
+                        <div class="oc-header">
+                            <span class="oc-app">OpenCode · Desktop</span>
+                            <span class="oc-model">模型选择 ▾</span>
+                        </div>
+                        <div class="oc-conversation">
+                            <div class="oc-msg oc-msg-user">
+                                <span class="oc-role">你</span>
+                                <p class="oc-text">标注 2 稍微往下移一点，标注 4 放到左下角，标注 1 和 3 的位置差不多，可以不动。</p>
+                            </div>
+                            <div class="oc-msg oc-msg-agent">
+                                <span class="oc-role">OpenCode</span>
+                                <div class="oc-text">
+                                    <p class="oc-action">▸ 标注 2（Agent 操作过程）下移</p>
+                                    <p class="oc-action">▸ 标注 4（模型选择）移至左下角</p>
+                                    <div class="oc-files">
+                                        <span class="oc-file-label">修改文件</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>index.html</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oc-input" aria-hidden="true">
+                            <span>输入你的需求……</span>
+                        </div>
+                    </div>
+
+                    <div class="preview-window">
+                        <div class="preview-bar">
+                            <span class="preview-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="preview-url">versions/v0.7/index.html</span>
+                        </div>
+                        <iframe src="../v0.7/index.html" title="v0.7 版本预览" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="making-version">
+                    <div class="version-head">
+                        <span class="version-badge">v0.8</span>
+                        <p class="version-summary">把 Vibe Coding 讲成一个迭代循环</p>
+                    </div>
+
+                    <div class="oc-window">
+                        <div class="oc-header">
+                            <span class="oc-app">OpenCode · Desktop</span>
+                            <span class="oc-model">模型选择 ▾</span>
+                        </div>
+                        <div class="oc-conversation">
+                            <div class="oc-msg oc-msg-user">
+                                <span class="oc-role">你</span>
+                                <p class="oc-text">实现「第一次 Vibe Coding」章节：不讲 Prompt Engineering，让学生理解"想法 → 告诉 OpenCode → 看结果 → 不满意继续改"的迭代循环，再配一个很短的对话小例子。这一节先不要透露这个网站也是用 OpenCode 做的。</p>
+                            </div>
+                            <div class="oc-msg oc-msg-agent">
+                                <span class="oc-role">OpenCode</span>
+                                <div class="oc-text">
+                                    <p class="oc-action">▸ 设计"想法 → 告诉 → 看看 → 不满意"的循环图</p>
+                                    <p class="oc-action">▸ 加入"帮我做家乡小网页"的简短对话例子</p>
+                                    <p class="oc-action">▸ 结尾点题"这些 Prompt 就是正常说话"</p>
+                                    <div class="oc-files">
+                                        <span class="oc-file-label">修改文件</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>index.html</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>style.css</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oc-input" aria-hidden="true">
+                            <span>输入你的需求……</span>
+                        </div>
+                    </div>
+
+                    <div class="preview-window">
+                        <div class="preview-bar">
+                            <span class="preview-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="preview-url">versions/v0.8/index.html</span>
+                        </div>
+                        <iframe src="../v0.8/index.html" title="v0.8 版本预览" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="making-version">
+                    <div class="version-head">
+                        <span class="version-badge">v0.9</span>
+                        <p class="version-summary">修正"Prompt 写法"的表达</p>
+                    </div>
+
+                    <div class="oc-window">
+                        <div class="oc-header">
+                            <span class="oc-app">OpenCode · Desktop</span>
+                            <span class="oc-model">模型选择 ▾</span>
+                        </div>
+                        <div class="oc-conversation">
+                            <div class="oc-msg oc-msg-user">
+                                <span class="oc-role">你</span>
+                                <p class="oc-text">这节结尾"Prompt 不需要写得多复杂"容易被理解成 Vibe Coding 就该写短 Prompt。我想表达的是：Prompt 没有固定写法——想法清楚就描述详细一点，只想微调就一句话。按这个逻辑调整文案和例子，整体设计不要动。</p>
+                            </div>
+                            <div class="oc-msg oc-msg-agent">
+                                <span class="oc-role">OpenCode</span>
+                                <div class="oc-text">
+                                    <p class="oc-action">▸ 标题改为"举个例子：Prompt 没有固定写法"</p>
+                                    <p class="oc-action">▸ 拆成"想法明确写细一点"与"微调一句话"两个场景</p>
+                                    <p class="oc-action">▸ 更新结尾点题表达</p>
+                                    <div class="oc-files">
+                                        <span class="oc-file-label">修改文件</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>index.html</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>style.css</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oc-input" aria-hidden="true">
+                            <span>输入你的需求……</span>
+                        </div>
+                    </div>
+
+                    <div class="preview-window">
+                        <div class="preview-bar">
+                            <span class="preview-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="preview-url">versions/v0.9/index.html</span>
+                        </div>
+                        <iframe src="../v0.9/index.html" title="v0.9 版本预览" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="making-version">
+                    <div class="version-head">
+                        <span class="version-badge">v0.10</span>
+                        <p class="version-summary">Surprise 改成进入 Making of 的自然过渡</p>
+                    </div>
+
+                    <div class="oc-window">
+                        <div class="oc-header">
+                            <span class="oc-app">OpenCode · Desktop</span>
+                            <span class="oc-model">模型选择 ▾</span>
+                        </div>
+                        <div class="oc-conversation">
+                            <div class="oc-msg oc-msg-user">
+                                <span class="oc-role">你</span>
+                                <p class="oc-text">做 Surprise 这一节，但不要做刻意的"惊喜揭晓"：直接告诉学生这个网站就是我们用 OpenCode 一步步 Vibe Coding 做出来的，前面 Desktop 截图也来自一次真实修改，加一个"查看完整开发过程 →"按钮。不要"等等""你发现了吗"这类文案，Making of 本体先不做。</p>
+                            </div>
+                            <div class="oc-msg oc-msg-agent">
+                                <span class="oc-role">OpenCode</span>
+                                <div class="oc-text">
+                                    <p class="oc-action">▸ 换成进入 Making of 前的自然过渡文案</p>
+                                    <p class="oc-action">▸ 呼应前面真实截图来自本网站的一次修改</p>
+                                    <p class="oc-action">▸ 添加"查看完整开发过程 →"按钮，平滑滚动到 Making of</p>
+                                    <div class="oc-files">
+                                        <span class="oc-file-label">修改文件</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>index.html</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>style.css</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oc-input" aria-hidden="true">
+                            <span>输入你的需求……</span>
+                        </div>
+                    </div>
+
+                    <div class="preview-window">
+                        <div class="preview-bar">
+                            <span class="preview-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="preview-url">versions/v0.10/index.html</span>
+                        </div>
+                        <iframe src="../v0.10/index.html" title="v0.10 版本预览" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="making-version">
+                    <div class="version-head">
+                        <span class="version-badge">v0.11</span>
+                        <p class="version-summary">做出这个 "Making of" 页面本身</p>
+                    </div>
+
+                    <div class="oc-window">
+                        <div class="oc-header">
+                            <span class="oc-app">OpenCode · Desktop</span>
+                            <span class="oc-model">模型选择 ▾</span>
+                        </div>
+                        <div class="oc-conversation">
+                            <div class="oc-msg oc-msg-user">
+                                <span class="oc-role">你</span>
+                                <p class="oc-text">做一个 Making of 章节，像回放我们和 OpenCode 开发这个网站的过程：每个版本先给一句话总结，再展示真实对话窗口（Prompt 用简短摘要），最后用从 Git tag 导出的真实历史版本做网页预览。先做 v0.1～v0.3 验证，再补齐到 v0.10，并把这一版自己也放进来。</p>
+                            </div>
+                            <div class="oc-msg oc-msg-agent">
+                                <span class="oc-role">OpenCode</span>
+                                <div class="oc-text">
+                                    <p class="oc-action">▸ 从 Git tag 导出 v0.1～v0.10 历史快照到 versions/</p>
+                                    <p class="oc-action">▸ 每个版本实现"一句话总结 + 对话窗口 + 真实预览"三部分</p>
+                                    <p class="oc-action">▸ 对话窗口里用简短摘要展示每轮的 Prompt</p>
+                                    <div class="oc-files">
+                                        <span class="oc-file-label">修改文件</span>
+                                        <span class="oc-file"><em class="oc-add">+</em>versions/</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>index.html</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>style.css</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>MAKING_OF.md</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oc-input" aria-hidden="true">
+                            <span>输入你的需求……</span>
+                        </div>
+                    </div>
+
+                    <div class="preview-window">
+                        <div class="preview-bar">
+                            <span class="preview-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="preview-url">versions/v0.11/index.html</span>
+                        </div>
+                        <iframe src="../v0.11/index.html" title="v0.11 版本预览" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="making-version">
+                    <div class="version-head">
+                        <span class="version-badge">v0.12</span>
+                        <p class="version-summary">补齐最后的 "Your Turn / Resources" 章节</p>
+                    </div>
+
+                    <div class="oc-window">
+                        <div class="oc-header">
+                            <span class="oc-app">OpenCode · Desktop</span>
+                            <span class="oc-model">模型选择 ▾</span>
+                        </div>
+                        <div class="oc-conversation">
+                            <div class="oc-msg oc-msg-user">
+                                <span class="oc-role">你</span>
+                                <p class="oc-text">做最后的 Your Turn / Resources：前半是 Your Turn，引导学生自己打开 OpenCode 试一次，配一个 starter prompt 示例；后半是 Resources，四张资源卡片分"继续学习"和"看看这个项目"两类。GitHub 源码和完整对话的链接先用"待补充"占位，不要编造 URL。</p>
+                            </div>
+                            <div class="oc-msg oc-msg-agent">
+                                <span class="oc-role">OpenCode</span>
+                                <div class="oc-text">
+                                    <p class="oc-action">▸ 实现 Your Turn：引导语 + 三步动手流程 + 描述方式说明</p>
+                                    <p class="oc-action">▸ 加入 starter prompt 示例与复制按钮</p>
+                                    <p class="oc-action">▸ 实现 Resources：两组共四张资源卡片</p>
+                                    <p class="oc-action">▸ GitHub 源码与完整对话用"链接待补充"占位</p>
+                                    <div class="oc-files">
+                                        <span class="oc-file-label">修改文件</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>index.html</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>style.css</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>script.js</span>
+                                        <span class="oc-file"><em class="oc-edit">~</em>MAKING_OF.md</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oc-input" aria-hidden="true">
+                            <span>输入你的需求……</span>
+                        </div>
+                    </div>
+
+                    <div class="preview-window">
+                        <div class="preview-bar">
+                            <span class="preview-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="preview-url">versions/v0.12/index.html</span>
+                        </div>
+                        <iframe src="../v0.12/index.html" title="v0.12 版本预览" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="your-turn" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2>Your Turn / Resources</h2>
+                </header>
+
+                <div class="turn-lead">
+                    <p>到这里，课堂的主要内容就结束了。剩下的很简单：<strong>真正打开 OpenCode，亲手试一次。</strong></p>
+                </div>
+
+                <ol class="turn-steps">
+                    <li>
+                        <span class="turn-step-num">1</span>
+                        <span class="turn-step-text">找一个自己真的想做的小东西</span>
+                    </li>
+                    <li>
+                        <span class="turn-step-num">2</span>
+                        <span class="turn-step-text">建一个空文件夹，用 OpenCode 打开它</span>
+                    </li>
+                    <li>
+                        <span class="turn-step-num">3</span>
+                        <span class="turn-step-text">告诉它你想做什么</span>
+                    </li>
+                </ol>
+
+                <div class="turn-approach">
+                    <p class="turn-approach-title">怎么描述，看你的需要</p>
+                    <ul class="turn-points">
+                        <li><strong>已有明确想法</strong>，就把目标、内容、风格、限制等要求说得详细一些。</li>
+                        <li><strong>只是想先试试</strong>，从一句简单的话开始也没问题。</li>
+                        <li><strong>看到结果之后</strong>，再根据自己的想法继续告诉它怎么调整。</li>
+                    </ul>
+                </div>
+
+                <div class="turn-starter">
+                    <p class="turn-starter-label">一个帮你迈出第一步的例子（不是万能模板）</p>
+                    <div class="starter-command">
+                        <code>我想做一个 ______。先帮我做一个可以运行的第一版。</code>
+                        <button class="copy-btn" type="button" aria-label="复制示例提示词">复制</button>
+                    </div>
+                </div>
+
+                <div class="resources">
+                    <div class="resource-group">
+                        <h3 class="resource-group-title">继续学习</h3>
+                        <div class="resource-grid">
+                            <article class="resource-card">
+                                <h4 class="resource-name">OpenCode 官方文档</h4>
+                                <p class="resource-desc">完整的安装、配置与使用说明。</p>
+                                <a class="resource-link" href="https://opencode.ai/docs/" target="_blank" rel="noopener noreferrer">访问 →</a>
+                            </article>
+                            <article class="resource-card">
+                                <h4 class="resource-name">视频教程</h4>
+                                <p class="resource-desc">B 站上的一支 OpenCode 教程视频。</p>
+                                <a class="resource-link" href="https://www.bilibili.com/video/BV1RH7C6ZEAg" target="_blank" rel="noopener noreferrer">访问 →</a>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="resource-group">
+                        <h3 class="resource-group-title">看看这个项目</h3>
+                        <div class="resource-grid">
+                            <article class="resource-card">
+                                <h4 class="resource-name">GitHub 源码</h4>
+                                <p class="resource-desc">这个教学网站自己的完整源码。</p>
+                                <span class="resource-pending">链接待补充</span>
+                            </article>
+                            <article class="resource-card">
+                                <h4 class="resource-name">完整 OpenCode 对话</h4>
+                                <p class="resource-desc">我们制作这个网站时与 OpenCode 的完整对话。</p>
+                                <span class="resource-pending">链接待补充</span>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>OpenCode × Vibe Coding 教学网站</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

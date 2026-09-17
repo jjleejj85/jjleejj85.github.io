@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCode × Vibe Coding</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <progress id="progress-bar" max="100" value="0"></progress>
+
+    <nav id="nav" class="nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-brand">OpenCode × Vibe Coding</a>
+            <ul class="nav-links">
+                <li><a href="#what-is-opencode">是什么</a></li>
+                <li><a href="#install">安装</a></li>
+                <li><a href="#first-use">初次使用</a></li>
+                <li><a href="#vibe-coding">Vibe Coding</a></li>
+                <li><a href="#your-turn">Your Turn</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="hero" class="section hero">
+            <div class="hero-content">
+                <h1 class="hero-title">OpenCode × Vibe Coding</h1>
+                <p class="hero-subtitle">面向《计算机科学导论》本科生的入门教学</p>
+                <a href="#what-is-opencode" class="btn btn-primary">开始探索</a>
+            </div>
+            <div class="hero-decoration" aria-hidden="true"></div>
+        </section>
+
+        <section id="what-is-opencode" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2>OpenCode 是什么</h2>
+                </header>
+
+                <div class="compare-grid">
+                    <article class="compare-card">
+                        <span class="compare-tag">你可能用过</span>
+                        <h3 class="compare-title">普通 AI Chat</h3>
+                        <ol class="steps">
+                            <li>我提出问题</li>
+                            <li>AI 给我代码或建议</li>
+                            <li>我自己复制、修改、运行</li>
+                        </ol>
+                    </article>
+
+                    <div class="compare-vs" aria-hidden="true">VS</div>
+
+                    <article class="compare-card compare-card-accent">
+                        <span class="compare-tag">今天的主角</span>
+                        <h3 class="compare-title">AI Coding Agent</h3>
+                        <ol class="steps">
+                            <li>我描述想做什么</li>
+                            <li>Agent 读取项目</li>
+                            <li>修改文件、运行命令</li>
+                            <li>我查看结果</li>
+                            <li>继续告诉它怎么改</li>
+                        </ol>
+                    </article>
+                </div>
+
+                <div class="about">
+                    <h3>OpenCode</h3>
+                    <p>OpenCode 是一个开源的 AI Coding Agent，可以通过终端、桌面应用或 IDE 使用。它能够进入真实项目，读取代码、修改文件、运行命令，并根据你的反馈继续迭代。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="install" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2>安装 OpenCode</h2>
+                </header>
+
+                <div class="tab-group">
+                    <span class="tab-group-label">方式</span>
+                    <div class="tabs" role="tablist" aria-label="安装方式">
+                        <button class="tab-btn is-active" type="button" data-mode="desktop" role="tab" aria-selected="true">Desktop</button>
+                        <button class="tab-btn" type="button" data-mode="cli" role="tab" aria-selected="false">CLI</button>
+                    </div>
+                </div>
+
+                <div class="tab-group">
+                    <span class="tab-group-label">系统</span>
+                    <div class="tabs" role="tablist" aria-label="操作系统">
+                        <button class="tab-btn is-active" type="button" data-os="macos" role="tab" aria-selected="true">macOS</button>
+                        <button class="tab-btn" type="button" data-os="windows" role="tab" aria-selected="false">Windows</button>
+                        <button class="tab-btn" type="button" data-os="linux" role="tab" aria-selected="false">Linux</button>
+                    </div>
+                </div>
+
+                <div class="install-panel is-visible" data-mode="desktop" data-os="macos" role="tabpanel" aria-hidden="false">
+                    <p class="install-desc">macOS 可以从 OpenCode 官方下载页面获取桌面版安装包，也可以用 Homebrew 一键安装。</p>
+                    <div class="install-command">
+                        <code>brew install --cask opencode-desktop</code>
+                        <button class="copy-btn" type="button" aria-label="复制安装命令">复制</button>
+                    </div>
+                    <a class="install-link" href="https://opencode.ai/zh/download" target="_blank" rel="noopener noreferrer">OpenCode 官方下载页面 →</a>
+                </div>
+
+                <div class="install-panel" data-mode="desktop" data-os="windows" role="tabpanel" aria-hidden="true">
+                    <p class="install-desc">Windows 可以到 OpenCode 官方下载页面直接获取桌面版安装包。</p>
+                    <a class="install-link" href="https://opencode.ai/zh/download" target="_blank" rel="noopener noreferrer">OpenCode 官方下载页面 →</a>
+                </div>
+
+                <div class="install-panel" data-mode="desktop" data-os="linux" role="tabpanel" aria-hidden="true">
+                    <p class="install-desc">Linux 可以到 OpenCode 官方下载页面获取 .deb 或 .rpm 桌面版安装包。</p>
+                    <a class="install-link" href="https://opencode.ai/zh/download" target="_blank" rel="noopener noreferrer">OpenCode 官方下载页面 →</a>
+                </div>
+
+                <div class="install-panel" data-mode="cli" data-os="macos" role="tabpanel" aria-hidden="true">
+                    <p class="install-desc">macOS / Linux 可以使用官方安装脚本，一行命令即可装好 CLI。</p>
+                    <div class="install-command">
+                        <code>curl -fsSL https://opencode.ai/install | bash</code>
+                        <button class="copy-btn" type="button" aria-label="复制安装命令">复制</button>
+                    </div>
+                    <a class="install-link" href="https://opencode.ai/zh/download" target="_blank" rel="noopener noreferrer">OpenCode 官方下载页面 →</a>
+                </div>
+
+                <div class="install-panel" data-mode="cli" data-os="windows" role="tabpanel" aria-hidden="true">
+                    <p class="install-desc">OpenCode 可以直接在 Windows 上运行，但官方推荐使用 WSL 以获得更好的体验，再在 WSL 内安装 OpenCode CLI。</p>
+                    <div class="install-command">
+                        <code>curl -fsSL https://opencode.ai/install | bash</code>
+                        <button class="copy-btn" type="button" aria-label="复制安装命令">复制</button>
+                    </div>
+                    <a class="install-link" href="https://opencode.ai/zh/download" target="_blank" rel="noopener noreferrer">OpenCode 官方下载页面 →</a>
+                </div>
+
+                <div class="install-panel" data-mode="cli" data-os="linux" role="tabpanel" aria-hidden="true">
+                    <p class="install-desc">macOS / Linux 可以使用官方安装脚本，一行命令即可装好 CLI。</p>
+                    <div class="install-command">
+                        <code>curl -fsSL https://opencode.ai/install | bash</code>
+                        <button class="copy-btn" type="button" aria-label="复制安装命令">复制</button>
+                    </div>
+                    <a class="install-link" href="https://opencode.ai/zh/download" target="_blank" rel="noopener noreferrer">OpenCode 官方下载页面 →</a>
+                </div>
+
+                <p class="install-tip">提示：npm、Bun、Chocolatey、Scoop 等其他安装方式这里不逐一展开，需要时可以直接去官方安装页面查看。</p>
+
+                <p class="install-cta-wrap">
+                    <a class="install-cta" href="https://opencode.ai/zh/download" target="_blank" rel="noopener noreferrer">查看官方安装页面 →</a>
+                </p>
+            </div>
+        </section>
+
+        <section id="first-use" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2>第一次使用 OpenCode</h2>
+                </header>
+
+                <p class="first-use-note">这里以 Desktop App 为例。CLI 的核心工作方式也是类似的，只是对话发生在一个终端里。</p>
+
+                <figure class="app-screenshot">
+                    <img src="assets/opencode-app.png" alt="OpenCode Desktop 的实际使用界面截图">
+                    <ol class="markers" aria-hidden="true">
+                        <li class="marker" style="--mx: 55%; --my: 38%;">
+                            <span class="marker-num">1</span>
+                            <span class="marker-label">对话区域</span>
+                        </li>
+                        <li class="marker" style="--mx: 55%; --my: 68%;">
+                            <span class="marker-num">2</span>
+                            <span class="marker-label">Agent 操作过程</span>
+                        </li>
+                        <li class="marker" style="--mx: 55%; --my: 90%;">
+                            <span class="marker-num">3</span>
+                            <span class="marker-label">Prompt 输入框</span>
+                        </li>
+                        <li class="marker" style="--mx: 13%; --my: 88%;">
+                            <span class="marker-num">4</span>
+                            <span class="marker-label">模型选择</span>
+                        </li>
+                    </ol>
+                </figure>
+
+                <ol class="spot-list">
+                    <li>
+                        <span class="spot-num">1</span>
+                        <div>
+                            <p class="spot-title">对话区域</p>
+                            <p class="spot-desc">我和 OpenCode 沟通的地方。</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="spot-num">2</span>
+                        <div>
+                            <p class="spot-title">Agent 的操作过程</p>
+                            <p class="spot-desc">可以看到它实际修改文件、执行任务。</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="spot-num">3</span>
+                        <div>
+                            <p class="spot-title">Prompt 输入框</p>
+                            <p class="spot-desc">直接告诉它你想做什么。</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="spot-num">4</span>
+                        <div>
+                            <p class="spot-title">模型选择</p>
+                            <p class="spot-desc">可以切换当前使用的模型。</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="vibe-coding" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2>第一次 Vibe Coding</h2>
+                </header>
+
+                <p class="vibe-lead">Vibe Coding 不是"一句话生成完美软件"，而是一个不断沟通、判断和修改的迭代过程。</p>
+
+                <div class="loop">
+                    <div class="loop-steps">
+                        <div class="step">
+                            <span class="step-num">1</span>
+                            <span class="step-text">有一个想法</span>
+                        </div>
+                        <div class="step-arrow" aria-hidden="true">→</div>
+                        <div class="step">
+                            <span class="step-num">2</span>
+                            <span class="step-text">告诉 OpenCode</span>
+                        </div>
+                        <div class="step-arrow" aria-hidden="true">→</div>
+                        <div class="step">
+                            <span class="step-num">3</span>
+                            <span class="step-text">看看它做出来什么</span>
+                        </div>
+                        <div class="step-arrow" aria-hidden="true">→</div>
+                        <div class="step">
+                            <span class="step-num">4</span>
+                            <span class="step-text">发现不满意的地方</span>
+                        </div>
+                    </div>
+                    <div class="loop-back">
+                        <span class="loop-back-icon" aria-hidden="true">↻</span>
+                        <p>继续告诉它怎么改，再看看，不满意就再来——<strong>循环下去，而不是一次到位。</strong></p>
+                    </div>
+                </div>
+
+                <div class="example">
+                    <h3>举个例子：Prompt 没有固定写法</h3>
+
+                    <div class="example-case">
+                        <p class="example-case-title">有明确想法时，可以描述得细一点：</p>
+                        <ul class="example-chat">
+                            <li class="example-msg example-msg-user"><span class="example-who">你</span>做一个介绍我家乡的小网页：深色背景，分历史、美食、交通三块内容，标题简洁，手机上看也要舒服</li>
+                            <li class="example-msg example-msg-agent"><span class="example-who">Agent</span>按这些要求创建文件，完成第一版……</li>
+                        </ul>
+                    </div>
+
+                    <div class="example-case">
+                        <p class="example-case-title">只是想微调时，简单说一句就够了：</p>
+                        <ul class="example-chat">
+                            <li class="example-msg example-msg-user"><span class="example-who">你</span>帮我做一个介绍我家乡的小网页</li>
+                            <li class="example-msg example-msg-agent"><span class="example-who">Agent</span>创建文件，做出第一版……</li>
+                            <li class="example-msg example-msg-user"><span class="example-who">你</span>有点太普通了</li>
+                            <li class="example-msg example-msg-agent"><span class="example-who">Agent</span>重新调整设计……</li>
+                            <li class="example-msg example-msg-user"><span class="example-who">你</span>手机上太挤了</li>
+                            <li class="example-msg example-msg-agent"><span class="example-who">Agent</span>优化移动端布局……</li>
+                            <li class="example-msg example-msg-user"><span class="example-who">你</span>标题再简洁一点</li>
+                            <li class="example-msg example-msg-agent"><span class="example-who">Agent</span>修改标题……</li>
+                        </ul>
+                    </div>
+
+                    <p class="example-note">Prompt 没有固定的长度和写法：想法清楚，就描述得细一些；只想微调，一句话就够了。关键不是"写得短"，而是把<strong>自己真正想要的表达清楚</strong>。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="surprise" class="section surprise">
+            <div class="container">
+                <header class="section-header">
+                    <h2>Surprise</h2>
+                </header>
+                <div class="placeholder">本章节内容待填充</div>
+            </div>
+        </section>
+
+        <section id="making-of" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2>Making of</h2>
+                </header>
+                <div class="placeholder">本章节内容待填充</div>
+            </div>
+        </section>
+
+        <section id="your-turn" class="section">
+            <div class="container">
+                <header class="section-header">
+                    <h2>Your Turn / Resources</h2>
+                </header>
+                <div class="placeholder">本章节内容待填充</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>OpenCode × Vibe Coding 教学网站</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

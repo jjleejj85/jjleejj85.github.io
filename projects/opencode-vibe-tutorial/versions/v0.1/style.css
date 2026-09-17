@@ -1,0 +1,339 @@
+:root {
+    --bg: #0d0d0d;
+    --bg-elevated: #141414;
+    --fg: #e8e8e8;
+    --fg-muted: #9aa0a6;
+    --accent: #22d3ee;
+    --accent-dim: rgba(34, 211, 238, 0.15);
+    --border: #2a2a2a;
+    --card: #1a1a1a;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "JetBrains Mono", "Fira Code", "SF Mono", Menlo, Consolas, monospace;
+    --max-width: 960px;
+    --nav-height: 56px;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg: #fafafa;
+        --bg-elevated: #ffffff;
+        --fg: #1a1a1a;
+        --fg-muted: #666;
+        --accent: #0891b2;
+        --accent-dim: rgba(8, 145, 178, 0.1);
+        --border: #e5e5e5;
+        --card: #ffffff;
+    }
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code, pre, kbd, samp {
+    font-family: var(--font-mono);
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.section {
+    padding: 100px 0;
+}
+
+.section-header {
+    margin-bottom: 48px;
+}
+
+.section-header h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+}
+
+.placeholder {
+    padding: 60px 24px;
+    text-align: center;
+    color: var(--fg-muted);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 16px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+}
+
+.btn-primary:hover {
+    background: #06b6d4;
+    text-decoration: none;
+}
+
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    appearance: none;
+    border: none;
+    background: transparent;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+#progress-bar::-webkit-progress-bar {
+    background: transparent;
+}
+
+#progress-bar::-webkit-progress-value {
+    background: var(--accent);
+    border-radius: 0;
+}
+
+#progress-bar::-moz-progress-bar {
+    background: var(--accent);
+    border-radius: 0;
+}
+
+.nav {
+    position: sticky;
+    top: 0;
+    height: var(--nav-height);
+    background: rgba(var(--bg), 0.85);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+}
+
+.nav-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+}
+
+.nav-brand {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--fg);
+    text-decoration: none;
+}
+
+.nav-brand:hover {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+}
+
+.nav-links a {
+    display: block;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--fg-muted);
+    border-radius: 6px;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.nav-links a:hover {
+    color: var(--fg);
+    background: var(--accent-dim);
+    text-decoration: none;
+}
+
+.nav-links a.active {
+    color: var(--accent);
+    background: var(--accent-dim);
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, var(--accent-dim) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 0 24px;
+    max-width: 800px;
+}
+
+.hero-title {
+    font-size: clamp(40px, 7vw, 72px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    color: var(--fg);
+}
+
+.hero-subtitle {
+    font-size: clamp(18px, 2.5vw, 24px);
+    color: var(--fg-muted);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-decoration {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.hero-decoration::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.15; }
+    50% { transform: scale(1.3); opacity: 0.05; }
+}
+
+.footer {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--fg-muted);
+    font-size: 14px;
+    border-top: 1px solid var(--border);
+    background: var(--bg-elevated);
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 72px 0;
+    }
+
+    .nav-links {
+        gap: 4px;
+    }
+
+    .nav-links a {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    .hero {
+        min-height: calc(100vh - var(--nav-height));
+    }
+
+    .hero-decoration {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --nav-height: 52px;
+    }
+
+    body {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+
+    .nav-inner {
+        padding: 0 16px;
+    }
+
+    .section-header {
+        margin-bottom: 32px;
+    }
+
+    .placeholder {
+        padding: 40px 16px;
+    }
+}
