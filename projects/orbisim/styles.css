@@ -236,11 +236,104 @@ h1 {
   color: var(--text-secondary);
 }
 
+.showreel {
+  --showreel-gap: 1rem;
+  overflow: hidden;
+  padding: 0.5rem 0 4.75rem;
+}
+
+.showreel-viewport {
+  width: min(calc(100% - 3rem), 980px);
+  margin: 0 auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+}
+
+.showreel-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.showreel-track,
+.showreel-group {
+  display: flex;
+  width: max-content;
+}
+
+.showreel-track {
+  animation: showreel-scroll 70s linear infinite;
+  will-change: transform;
+}
+
+.showreel-viewport:hover .showreel-track {
+  animation-play-state: paused;
+}
+
+.showreel-group {
+  gap: var(--showreel-gap);
+  padding-right: var(--showreel-gap);
+}
+
+.showreel-card {
+  width: min(24vw, 280px);
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.showreel-card figcaption {
+  padding: 0.65rem 0.9rem;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.showreel-card video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: #000;
+}
+
+@keyframes showreel-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .overview-section,
 .abstract-section,
 .strengths-section,
 .experiments-section {
   scroll-margin-top: 5.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showreel-track {
+    animation: none;
+    transform: none;
+  }
 }
 
 .overview-section,
@@ -397,6 +490,12 @@ h1 {
   border-top: 1px solid var(--line-strong);
 }
 
+.results-copy > .results-block.inline-rollouts {
+  margin: 1rem 0 2rem;
+  padding: 0;
+  border: 0;
+}
+
 .results-copy {
   max-width: 62rem;
 }
@@ -453,6 +552,23 @@ h1 {
   width: 100%;
   min-width: 920px;
   border-collapse: collapse;
+}
+
+.cable-sysid-table {
+  min-width: 660px;
+}
+
+.cable-control-table {
+  min-width: 720px;
+}
+
+.table-caption {
+  caption-side: bottom;
+  padding: 0.9rem 1rem 1rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  text-align: left;
 }
 
 .metrics-table th,
@@ -675,6 +791,10 @@ h1 {
   background: #000000;
 }
 
+.cable-video-grid .comparison-label {
+  gap: 0.25rem;
+}
+
 .citation-section {
   padding: 0 0 5.5rem;
   scroll-margin-top: 5.75rem;
@@ -719,6 +839,10 @@ h1 {
     max-width: none;
   }
 
+  .showreel-card {
+    width: 34vw;
+  }
+
   .comparison-grid.push-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -744,6 +868,18 @@ h1 {
 
   .hero {
     padding: 4rem 0 3rem;
+  }
+
+  .showreel {
+    padding-bottom: 3.5rem;
+  }
+
+  .showreel-viewport {
+    width: min(calc(100% - 1.5rem), var(--max-width));
+  }
+
+  .showreel-card {
+    width: 60vw;
   }
 
   h1 {

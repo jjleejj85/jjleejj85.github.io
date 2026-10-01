@@ -14,6 +14,91 @@ function initializeOutboundLinks() {
   }
 }
 
+function moveCableSectionBeforeDownstream() {
+  const cableSection = document.querySelector("#cable-sysid");
+  const resultsBlocks = Array.from(
+    document.querySelectorAll(".experiments-section .results-block")
+  );
+  const downstreamBlock = resultsBlocks.find((block) =>
+    block.querySelector(".results-kicker")?.textContent.trim() === "Downstream Control"
+  );
+
+  if (cableSection && downstreamBlock) {
+    downstreamBlock.before(cableSection);
+  }
+}
+
+function reorderCableResultBlocks() {
+  const section = document.querySelector("#cable-sysid");
+  if (!section) {
+    return;
+  }
+
+  const blocks = Array.from(section.children).filter((child) =>
+    child.classList.contains("artifact-block")
+  );
+  const byHeading = new Map(
+    blocks.map((block) => [
+      block.querySelector(".artifact-head h4")?.textContent.trim(),
+      block
+    ])
+  );
+  const ordered = [
+    "Real-robot execution on two cables",
+    "Terminal keypoint-to-target distance",
+    "Simulation system identification"
+  ].map((heading) => byHeading.get(heading));
+
+  if (ordered.every(Boolean)) {
+    section.querySelector(".results-copy")?.after(...ordered);
+  }
+}
+
+function reorderDownstreamArtifacts() {
+  const resultsBlocks = Array.from(
+    document.querySelectorAll(".experiments-section .results-block")
+  );
+  const downstream = resultsBlocks.find((block) =>
+    block.querySelector(".results-kicker")?.textContent.trim() === "Downstream Control"
+  );
+  if (!downstream) {
+    return;
+  }
+
+  const artifacts = Array.from(downstream.children).filter((child) =>
+    child.classList.contains("artifact-block")
+  );
+  const headingOf = (block) =>
+    block.querySelector(".artifact-head h4")?.textContent.replace(/\s+/g, " ").trim();
+  const rollout = artifacts.find((block) => headingOf(block)?.startsWith("Rollout comparison"));
+  const curves = artifacts.find((block) => headingOf(block)?.startsWith("Training curves"));
+
+  if (rollout && curves) {
+    curves.before(rollout);
+  }
+}
+
+function positionQualitativeRolloutsBeforeBenchmarkTitle() {
+  const resultsBlocks = Array.from(
+    document.querySelectorAll(".experiments-section .results-block")
+  );
+  const headingOf = (block) =>
+    block.querySelector(".results-copy h3")?.textContent.replace(/\s+/g, " ").trim();
+  const rollouts = resultsBlocks.find((block) =>
+    headingOf(block)?.startsWith("Rollouts across pushing")
+  );
+  const benchmark = resultsBlocks.find((block) =>
+    headingOf(block) === "Performance on benchmark manipulation tasks"
+  );
+  const benchmarkCopy = benchmark?.querySelector(".results-copy");
+  const benchmarkKicker = benchmarkCopy?.querySelector(".results-kicker");
+
+  if (rollouts && benchmarkKicker) {
+    rollouts.classList.add("inline-rollouts");
+    benchmarkKicker.after(rollouts);
+  }
+}
+
 function ensureMetadata(video) {
   if (video.readyState >= 1 && Number.isFinite(video.duration)) {
     return Promise.resolve();
@@ -180,12 +265,22 @@ function initializeTaskTabs() {
       const isActive = panel.id === targetId;
       panel.hidden = !isActive;
       panel.classList.toggle("is-active", isActive);
-      const controller = createGroupController(panel);
-      controller.stop(true);
+      if (panel.hasAttribute("data-native-loop")) {
+        for (const video of panel.querySelectorAll("video")) {
+          if (isActive) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+            safelySetCurrentTime(video, 0);
+          }
+        }
+      } else {
+        createGroupController(panel).stop(true);
+      }
     }
 
     const activePanel = panels.find((panel) => panel.id === targetId);
-    if (!activePanel) {
+    if (!activePanel || activePanel.hasAttribute("data-native-loop")) {
       return;
     }
 
@@ -217,6 +312,73 @@ function initializeStandaloneVideoGroups() {
   }
 }
 
+function initializeShowreel() {
+  const showreel = document.querySelector(".showreel");
+  const viewport = showreel?.querySelector(".showreel-viewport");
+  const track = showreel?.querySelector(".showreel-track");
+  const group = showreel?.querySelector(".showreel-group");
+  if (!showreel || !viewport || !track || !group) {
+    return;
+  }
+
+  const clone = group.cloneNode(true);
+  clone.setAttribute("aria-hidden", "true");
+  clone.querySelectorAll("video").forEach((video) => video.setAttribute("tabindex", "-1"));
+  track.append(clone);
+
+  const videos = Array.from(showreel.querySelectorAll("video"));
+  const getScrollAnimation = () =>
+    track.getAnimations().find((animation) => animation.animationName === "showreel-scroll");
+
+  const moveBy = (distance) => {
+    const animation = getScrollAnimation();
+    const duration = animation?.effect?.getTiming().duration;
+    const groupWidth = group.getBoundingClientRect().width;
+    if (!animation || typeof duration !== "number" || !groupWidth) {
+      return;
+    }
+
+    const currentTime = Number(animation.currentTime) || 0;
+    const nextTime = currentTime + (distance * duration) / groupWidth;
+    animation.currentTime = ((nextTime % duration) + duration) % duration;
+  };
+
+  viewport.addEventListener("wheel", (event) => {
+    const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+    if (!delta) {
+      return;
+    }
+
+    event.preventDefault();
+    moveBy(delta);
+  }, { passive: false });
+  viewport.addEventListener("keydown", (event) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") {
+      return;
+    }
+    event.preventDefault();
+    moveBy(event.key === "ArrowRight" ? 220 : -220);
+  });
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(([entry]) => {
+      videos.forEach((video) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.05 });
+    observer.observe(showreel);
+  }
+}
+
+positionQualitativeRolloutsBeforeBenchmarkTitle();
+moveCableSectionBeforeDownstream();
+reorderCableResultBlocks();
+reorderDownstreamArtifacts();
 initializeTaskTabs();
 initializeStandaloneVideoGroups();
 initializeOutboundLinks();
+initializeShowreel();

@@ -8,8 +8,8 @@
       name="description"
       content="OrbiSim: World Models as Differentiable Physics Engines for Embodied Intelligence."
     />
-    <link rel="stylesheet" href="./styles.css" />
-    <script defer src="./script.js"></script>
+    <link rel="stylesheet" href="./styles.css?v=showreel8" />
+    <script defer src="./script.js?v=showreel12"></script>
   </head>
   <body>
     <header class="site-header">
@@ -169,6 +169,45 @@
         </div>
       </section>
 
+      <section class="showreel" aria-label="Featured OrbiSim task rollouts">
+        <div class="showreel-viewport" tabindex="0" aria-label="Scrollable task video showcase">
+          <div class="showreel-track">
+            <div class="showreel-group">
+              <figure class="showreel-card">
+                <figcaption>Push</figcaption>
+                <video autoplay loop muted playsinline preload="metadata" aria-label="OrbiSim Push rollout">
+                  <source src="./videos_processed/push_high_f_OrbiSim.mp4" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="showreel-card">
+                <figcaption>Cable</figcaption>
+                <video autoplay loop muted playsinline preload="metadata" aria-label="OrbiSim Cable Lift rollout">
+                  <source src="./videos_processed/cable_hard_orbisim.mp4" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="showreel-card">
+                <figcaption>Stack</figcaption>
+                <video autoplay loop muted playsinline preload="metadata" aria-label="OrbiSim Stack rollout">
+                  <source src="./videos_processed/stack_OrbiSim.mp4" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="showreel-card">
+                <figcaption>Articulated</figcaption>
+                <video autoplay loop muted playsinline preload="metadata" aria-label="OrbiSim Articulated rollout">
+                  <source src="./videos_processed/articulated_OrbiSim.mp4" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="showreel-card">
+                <figcaption>Drape</figcaption>
+                <video autoplay loop muted playsinline preload="metadata" aria-label="OrbiSim Drape rollout">
+                  <source src="./videos_processed/drape_OrbiSim.mp4" type="video/mp4" />
+                </video>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="abstract-section" id="abstract">
         <div class="container intro-shell">
           <div class="section-intro intro-head">
@@ -271,9 +310,10 @@
             <article class="strength-item">
               <h3>End-to-end differentiability</h3>
               <p>
-                The differentiable pipeline facilitates Real-to-Sim system
-                identification over scene parameters and gradient-based policy
-                optimization for downstream control.
+                OrbiSim supports differentiable system identification from
+                state or visual rollouts, while propagating task gradients
+                through the simulation for downstream action and policy
+                optimization.
               </p>
             </article>
           </div>
@@ -299,7 +339,7 @@
               <p class="results-kicker">Generative and Physical Fidelity</p>
               <h3>Performance on benchmark manipulation tasks</h3>
               <p>
-                As shown in Table 1, OrbiSim (Final) consistently achieves
+                As shown in the table, OrbiSim (Final) consistently achieves
                 state-of-the-art performance across all metrics and horizons.
                 Compared with AdaWorld and Vid2World, OrbiSim maintains
                 superior temporal coherence and lower trajectory error,
@@ -309,9 +349,6 @@
             </div>
 
             <div class="artifact-block">
-              <div class="artifact-head">
-                <h4>Video-level world modeling performance</h4>
-              </div>
               <div class="table-shell">
                 <table class="metrics-table">
                   <thead>
@@ -397,17 +434,17 @@
 
           <div class="results-block">
             <div class="results-copy">
-              <p class="results-kicker">Qualitative Task Videos</p>
-              <h3>Rollouts across pushing, stacking, articulation, and draping</h3>
+              <h3>Rollouts across pushing, cable lifting, stacking, articulation, and draping</h3>
               <p>
-                We visualize four physics-rich settings used throughout the
+                We visualize five physics-rich settings used throughout the
                 paper: robotsuite <code class="inline-task-token">Push</code>
-                under varying friction, Isaac Lab
+                under varying friction, MuJoCo
+                <code class="inline-task-token">Cable Lift</code>, Isaac Lab
                 <code class="inline-task-token">Stack</code>, AdaManip
                 <code class="inline-task-token">Articulated</code>, and
                 Physion <code class="inline-task-token">Drape</code>.
-                Together, these
-                rollouts highlight sensitivity to physical parameters,
+                Together, these rollouts highlight sensitivity to physical
+                parameters, differentiable control over deformable cables,
                 long-horizon stability, joint-constrained part motion, and
                 geometry-conditioned cloth deformation under the same
                 asset-conditioned simulation framework.
@@ -425,6 +462,17 @@
                 data-task-target="task-push"
               >
                 Push
+              </button>
+              <button
+                class="task-tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="task-cable"
+                id="tab-cable"
+                data-task-target="task-cable"
+              >
+                Cable
               </button>
               <button
                 class="task-tab"
@@ -492,6 +540,43 @@
                   <div class="comparison-label is-ours">OrbiSim / Low friction</div>
                   <video autoplay muted playsinline preload="auto">
                     <source src="./videos_processed/push_low_f_OrbiSim.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+            </div>
+
+            <div class="task-panel" id="task-cable" role="tabpanel" aria-labelledby="tab-cable" data-video-group data-native-loop hidden>
+              <div class="task-summary">
+                MuJoCo <code class="inline-task-token">Cable Lift</code>
+                uses two robot arms to move keypoints on deformable cables
+                toward target locations under different material properties.
+                The GT rollouts shown here come from the real robot, while
+                OrbiSim predicts and optimizes the corresponding cable
+                dynamics for hard and flexible cables.
+              </div>
+              <div class="comparison-grid push-grid">
+                <div class="comparison-card">
+                  <div class="comparison-label">GT / Hard Cable</div>
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./videos_processed/cable_hard_gt.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="comparison-card">
+                  <div class="comparison-label">GT / Flexible Cable</div>
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./videos_processed/cable_flexible_gt.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="comparison-card">
+                  <div class="comparison-label is-ours">OrbiSim / Hard Cable</div>
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./videos_processed/cable_hard_orbisim.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="comparison-card">
+                  <div class="comparison-label is-ours">OrbiSim / Flexible Cable</div>
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./videos_processed/cable_flexible_orbisim.mp4" type="video/mp4" />
                   </video>
                 </div>
               </div>
@@ -686,6 +771,178 @@
                 interactions. In contrast, <strong>OrbiSim</strong> produces
                 coherent and goal-directed behaviors across different
                 scenarios.
+              </p>
+            </div>
+          </div>
+
+          <div class="results-block cable-sysid-block" id="cable-sysid">
+            <div class="results-copy">
+              <p class="results-kicker">Real-to-Sim Physical Inference and Real-Robot Policy Optimization</p>
+              <h3>Policy Learning via Differentiable Physical-Property Prediction</h3>
+              <p>
+                In <code class="inline-task-token">Cable Lift</code>, two robot
+                arms move designated points on a deformable cable toward
+                target locations. We alternate
+                physical-parameter identification and control optimization:
+                state- or image-trajectory discrepancies update the cable
+                parameters, then a differentiable OrbiSim-Dynamics rollout
+                optimizes the action sequence using terminal keypoint distance.
+                On the real AgileX dual-arm platform, RGB observations and
+                recorded robot motion support vision-based SysID before the
+                optimized actions are executed on cables with different
+                material properties.
+              </p>
+            </div>
+
+            <div class="artifact-block">
+              <div class="artifact-head">
+                <h4>Simulation system identification</h4>
+              </div>
+              <div class="table-shell">
+                <table class="metrics-table cable-sysid-table">
+                  <caption class="table-caption">
+                    Simulation SysID results on the Cable Lift task.
+                    Entries are mean absolute errors of the final estimated
+                    cable parameters within each evaluation split. The
+                    <code>bend_passes</code> column reports a discrete
+                    iteration-count error; the other columns use their
+                    respective simulator parameter units.
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Setting</th>
+                      <th scope="col">bend</th>
+                      <th scope="col">bend_passes</th>
+                      <th scope="col">recovery</th>
+                      <th scope="col">damping</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">State, ID</th>
+                      <td>0.0025</td>
+                      <td>0.10</td>
+                      <td>0.0061</td>
+                      <td>0.0093</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">State, OOD</th>
+                      <td>0.0055</td>
+                      <td>0.55</td>
+                      <td>0.0238</td>
+                      <td>0.0116</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Vision, ID</th>
+                      <td>0.0088</td>
+                      <td>0.90</td>
+                      <td>0.0185</td>
+                      <td>0.0366</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Vision, OOD</th>
+                      <td>0.0196</td>
+                      <td>1.80</td>
+                      <td>0.0778</td>
+                      <td>0.0487</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="artifact-block">
+              <div class="artifact-head">
+                <h4>Terminal keypoint-to-target distance</h4>
+              </div>
+              <div class="table-shell">
+                <table class="metrics-table cable-control-table">
+                  <caption class="table-caption">
+                    Final keypoint-to-target distance on the Cable
+                    Lift task. Simulation entries report the mean sum of the
+                    two keypoint-to-target distances after MuJoCo replay in
+                    meters, separately for ID and OOD settings. The real-world
+                    entry reports the mean distance in pixels. A dash indicates
+                    that the corresponding method was not evaluated in that
+                    setting.
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col" rowspan="2">Method</th>
+                      <th scope="colgroup" colspan="2">Simulation (m)</th>
+                      <th scope="col" rowspan="2">Real world (px)</th>
+                    </tr>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">OOD</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">SAC</th>
+                      <td>0.4402</td>
+                      <td>0.3678</td>
+                      <td>–</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">π<sub>0.5</sub></th>
+                      <td>0.1124</td>
+                      <td>0.0881</td>
+                      <td>62.2</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">OrbiSim (state-based SysID)</th>
+                      <td>0.0122</td>
+                      <td>0.0153</td>
+                      <td>–</td>
+                    </tr>
+                    <tr class="final-row">
+                      <th scope="row">OrbiSim (vision-based SysID)</th>
+                      <td>0.0240</td>
+                      <td>0.0290</td>
+                      <td>17.5</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="artifact-block">
+              <div class="artifact-head">
+                <h4>Real-robot execution on two cables</h4>
+              </div>
+              <div class="comparison-grid push-grid cable-video-grid">
+                <div class="comparison-card">
+                  <div class="comparison-label is-ours">OrbiSim / Cable 1</div>
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./videos_processed/cable1_orbisim.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="comparison-card">
+                  <div class="comparison-label">π<sub>0.5</sub> / Cable 1</div>
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./videos_processed/cable1_pi05.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="comparison-card">
+                  <div class="comparison-label is-ours">OrbiSim / Cable 2</div>
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./videos_processed/cable2_orbisim.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="comparison-card">
+                  <div class="comparison-label">π<sub>0.5</sub> / Cable 2</div>
+                  <video autoplay loop muted playsinline preload="auto">
+                    <source src="./videos_processed/cable2_pi05.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+              <p class="artifact-caption">
+                The OrbiSim-optimized actions achieve a mean final
+                keypoint-to-target distance of 17.5 ± 6.1 pixels, compared with
+                62.2 ± 36.3 pixels for π<sub>0.5</sub>. The optimized actions
+                transfer zero-shot to the real robot without direct cable-state
+                measurement.
               </p>
             </div>
           </div>
