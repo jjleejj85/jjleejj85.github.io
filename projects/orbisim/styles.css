@@ -490,10 +490,21 @@ h1 {
   border-top: 1px solid var(--line-strong);
 }
 
-.results-copy > .results-block.inline-rollouts {
-  margin: 1rem 0 2rem;
+.results-block.inline-rollouts {
+  width: min(100%, 65rem);
+  margin: 1rem auto 2rem;
   padding: 0;
   border: 0;
+}
+
+.results-block.inline-rollouts .results-copy {
+  max-width: none;
+}
+
+.cable-video-artifact {
+  max-width: 65rem;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .results-copy {

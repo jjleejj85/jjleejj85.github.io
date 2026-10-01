@@ -90,12 +90,11 @@ function positionQualitativeRolloutsBeforeBenchmarkTitle() {
   const benchmark = resultsBlocks.find((block) =>
     headingOf(block) === "Performance on benchmark manipulation tasks"
   );
-  const benchmarkCopy = benchmark?.querySelector(".results-copy");
-  const benchmarkKicker = benchmarkCopy?.querySelector(".results-kicker");
+  const benchmarkKicker = benchmark?.querySelector(".results-kicker");
 
   if (rollouts && benchmarkKicker) {
     rollouts.classList.add("inline-rollouts");
-    benchmarkKicker.after(rollouts);
+    benchmark.before(benchmarkKicker, rollouts);
   }
 }
 
